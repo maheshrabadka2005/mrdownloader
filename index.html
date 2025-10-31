@@ -13,123 +13,50 @@
       margin: 0;
       padding: 0;
     }
-
-    header {
-      background-color: black;
-      color: white;
-      padding: 15px;
-      font-size: 24px;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    h1 {
+      background-color: #0074D9;
+      padding: 20px;
+      margin: 0;
     }
-
-    header .logo {
-      background-color: black;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-weight: bold;
-    }
-
-    header .logo span {
-      font-size: 14px;
-    }
-
-    main {
-      margin-top: 100px;
-    }
-
     input {
-      width: 60%;
-      padding: 12px;
-      border-radius: 6px;
+      width: 80%;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 5px;
       border: none;
-      outline: none;
-      font-size: 16px;
     }
-
     button {
-      padding: 12px 25px;
-      background-color: white;
-      color: #001F3F;
+      padding: 10px 20px;
+      margin-top: 20px;
       border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      margin-left: 10px;
+      border-radius: 5px;
+      background-color: #2ECC40;
+      color: white;
+      font-size: 16px;
       cursor: pointer;
     }
-
     button:hover {
-      background-color: #007BFF;
-      color: white;
-    }
-
-    footer {
-      background-color: #001a33;
-      color: white;
-      padding: 15px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+      background-color: #01FF70;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <div>MR Downloader</div>
-    <div class="logo">
-      <div style="font-size:20px;">M</div>
-      <span>Mahesh</span>
-      <span>Rabarka</span>
-    </div>
-  </header>
-
-  <main>
-    <h2>Download Any Video Instantly</h2>
-    <p>Paste your video link below and start your download!</p>
-    <input type="text" id="videoURL" placeholder="Paste your video link here...">
-    <button onclick="downloadVideo()">Download</button>
-  </main>
-
-  <footer>
-    © 2025 MR Downloader | By Mahesh
-  </footer>
+  <h1>🎬 MR Downloader</h1>
+  <p>Paste your video or file link below 👇</p>
+  <input type="text" id="urlInput" placeholder="Enter video URL here">
+  <br>
+  <button onclick="downloadFile()">Download</button>
 
   <script>
-    async function downloadVideo() {
-      const url = document.getElementById('videoURL').value.trim();
+    function downloadFile() {
+      const url = document.getElementById('urlInput').value;
       if (!url) {
-        alert("Please enter a video URL!");
+        alert('Please enter a valid URL');
         return;
       }
-
-      // ✅ Call your working API hosted on Vercel
-      const apiURL = `https://mrdownloader.vercel.app/api/download?url=${encodeURIComponent(url)}`;
-
-      try {
-        const response = await fetch(apiURL);
-        if (!response.ok) throw new Error("Network error");
-        const data = await response.json();
-
-        if (data.success && data.download) {
-          // ✅ Redirect to download link
-          window.location.href = data.download;
-        } else {
-          alert("No valid download link found. Try another video!");
-        }
-      } catch (err) {
-        console.error(err);
-        alert("Error connecting to server!");
-      }
+      // Open the link directly — this works for most download URLs
+      window.open(url, '_blank');
     }
   </script>
-
 </body>
 </html>
