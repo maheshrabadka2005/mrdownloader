@@ -110,20 +110,22 @@
         return;
       }
 
-      // 👇 Working test API (safe, no server error)
+      // ✅ Call your working API hosted on Vercel
       const apiURL = `https://mrdownloader.vercel.app/api/download?url=${encodeURIComponent(url)}`;
 
       try {
         const response = await fetch(apiURL);
+        if (!response.ok) throw new Error("Network error");
         const data = await response.json();
 
-        if (data.download) {
-          // Redirect to download link
+        if (data.success && data.download) {
+          // ✅ Redirect to download link
           window.location.href = data.download;
         } else {
-          alert("Failed to get download link. Try another video.");
+          alert("No valid download link found. Try another video!");
         }
       } catch (err) {
+        console.error(err);
         alert("Error connecting to server!");
       }
     }
