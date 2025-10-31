@@ -43,19 +43,25 @@
 <body>
   <h1>🎬 MR Downloader</h1>
   <p>Paste your video or file link below 👇</p>
-  <input type="text" id="urlInput" placeholder="Enter video URL here">
+  <input type="text" id="urlInput" placeholder="Enter file/video link here">
   <br>
-  <button onclick="downloadFile()">Download</button>
+  <button onclick="downloadFile()">Download Now</button>
 
   <script>
     function downloadFile() {
-      const url = document.getElementById('urlInput').value;
+      const url = document.getElementById('urlInput').value.trim();
       if (!url) {
-        alert('Please enter a valid URL');
+        alert("Please enter a valid URL!");
         return;
       }
-      // Open the link directly — this works for most download URLs
-      window.open(url, '_blank');
+
+      // Create a hidden <a> tag for download
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = ''; // force browser to download
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     }
   </script>
 </body>
