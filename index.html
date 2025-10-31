@@ -104,20 +104,38 @@
 
   <script>
     async function downloadVideo() {
-      const url = document.getElementById('videoURL').value;
+      const url = document.getElementById('videoURL').value.trim();
       if (!url) {
         alert("Please enter a video URL!");
         return;
       }
 
-      const apiURL = `https://mrdownloader.vercel.app/api/download?url=${encodeURIComponent(url)}`;
+      let apiURL = "";
+
+      if (url.includes("youtube.com") || url.includes("youtu.be")) {
+        // YouTube API
+        apiURL = `https://yt-api.vercel.app/api?url=${encodeURIComponent(url)}`;
+      } 
+      else if (url.includes("instagram.com")) {
+        // Instagram API
+        apiURL = `https://instagramdownloaderapi.vercel.app/api?url=${encodeURIComponent(url)}`;
+      } 
+      else if (url.includes("facebook.com") || url.includes("fb.watch")) {
+        // Facebook API
+        apiURL = `https://facebook-video-api.vercel.app/api?url=${encodeURIComponent(url)}`;
+      } 
+      else {
+        alert("Only YouTube, Instagram & Facebook links are supported!");
+        return;
+      }
 
       try {
         const response = await fetch(apiURL);
         const data = await response.json();
 
-        if (data.download) {
-          window.location.href = data.download;
+        if (data.download_url || data.url || data.link) {
+          const videoLink = data.download_url || data.url || data.link;
+          window.location.href = videoLink;
         } else {
           alert("Failed to get download link. Try another video.");
         }
