@@ -1,164 +1,1081 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎁 Get ₹200 Instant</title>
+<title>Defence Mock Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #0d47a1;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    z-index: 999;
+}
+
+.footer button {
+    margin: 3px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.star {
+    font-size: 20px;
+    cursor: pointer;
+    color: #ccc;
+}
+
+.star.active {
+    color: gold;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #0d47a1;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    z-index: 999;
+}
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins;
 }
-
 body{
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-overflow:hidden;
-background:linear-gradient(-45deg,#020024,#090979,#000428,#1b2735,#000);
-background-size:400% 400%;
-animation:bg 10s ease infinite;
-padding:15px;
+    background:#eef3f8;
+    padding-bottom:60px;
 }
-
-@keyframes bg{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+.page{
+    display:none;
+    min-height:100vh;
+    padding:20px;
 }
-
-.star{
-position:absolute;
-width:2px;
-height:2px;
-background:#fff;
-border-radius:50%;
-animation:twinkle 2s infinite alternate;
+.active{
+    display:block;
 }
-
-@keyframes twinkle{
-from{opacity:.2;}
-to{opacity:1;}
+header{
+    background:linear-gradient(90deg,#0d47a1,#1976d2);
+    color:#fff;
+    padding:18px;
+    text-align:center;
+    position:relative;
 }
-
-.card{
-width:90%;
-max-width:350px;
-padding:25px;
-border-radius:20px;
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(15px);
-box-shadow:0 0 30px rgba(0,255,255,.4);
-text-align:center;
-color:#fff;
-z-index:10;
-}
-
-h1{
-font-size:26px;
-margin-bottom:15px;
-}
-
-p{
-color:#ddd;
-margin-bottom:20px;
-font-size:14px;
-}
-
 button{
-width:100%;
-padding:14px;
-font-size:18px;
-font-weight:bold;
-border:none;
-border-radius:12px;
-cursor:pointer;
-background:linear-gradient(90deg,#00e5ff,#00c853);
-color:#fff;
-box-shadow:0 0 20px cyan;
-transition:.3s;
+    padding:12px 18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    margin:8px;
 }
+.primary{background:#1565c0;color:#fff;}
+.danger{background:red;color:#fff;}
+.back{background:#444;color:#fff;}
 
-button:hover{
-transform:scale(1.03);
+.container{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+    padding-top:20px;
 }
-
-#msg{
-margin-top:20px;
-font-size:22px;
-font-weight:bold;
-text-align:center;
+.card{
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+    text-align:center;
 }
-
-.footer{
-margin-top:15px;
-font-size:12px;
-color:#ccc;
+.box{
+    max-width:900px;
+    margin:auto;
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
 }
-
-@keyframes pop{
-0%{transform:scale(0);}
-70%{transform:scale(1.2);}
-100%{transform:scale(1);}
+input,select,textarea{
+    padding:10px;
+    width:100%;
+    margin:6px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:10px 0;
+    cursor:pointer;
+    padding:8px 10px;
+    border-radius:8px;
+}
+label:hover{background:#f1f5ff;}
+input[type="radio"]{
+    transform:scale(1.2);
+    cursor:pointer;
 }
 </style>
-
 </head>
 
+<div class="footer">
+| Built with ❤️ by MR 🇮🇳| © All Rights Reserved
+</div>
 <body>
 
-<div class="card">
-<h1>🎁 Get ₹200 Instant</h1>
-<p>Click the button below to claim your reward!</p>
+<!-- ==================== LOGIN / SIGNUP PAGE ==================== -->
+<div id="loginPage" class="page active">
+    <div style="max-width:430px;margin:35px auto;background:#fff;padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.15);">
 
-<button onclick="playPrank()">💸 Claim Now</button>
+        <div style="text-align:center;">
+            <div style="font-size:70px;">🛡️</div>
+            <h1 style="color:#1565c0;🙏🏻>Welcome🙏🏻</h1>
+            <p style="color:#777;">Defence Mock Test Portal</p>
+        </div>
 
-<div id="msg"></div>
+        <!-- TAB BUTTONS -->
+        <div style="display:flex;margin-top:25px;gap:10px;">
+            <button id="loginTab" class="primary" style="flex:1;" onclick="showLogin()">Login</button>
+            <button id="signupTab" class="back" style="flex:1;" onclick="showSignup()">Sign Up</button>
+            <div style="text-align:center;margin-top:25px;color:#777;font-size:13px;">
 
-<audio id="audio" src="audio.mp3"></audio>
-
-<div class="footer">
-❤️ Made by MR
 </div>
+        </div>
+
+        <!-- LOGIN BOX -->
+        <div id="loginBox">
+            <input type="tel" id="loginMobile" placeholder="📱 Mobile Number" maxlength="10">
+            <input type="password" id="loginPassword" placeholder="🔒 Password">
+            <button class="primary" style="width:100%" onclick="loginUser()">Login</button>
+          
+       
+          
+        </div>
+
+        <!-- SIGNUP BOX -->
+        <div id="signupBox" style="display:none;margin-top:10px;">
+          <p style="text-align:center;margin-top:25px;color:#777;font-size:13px;">
+
+</p>
+            <input type="text" id="signupName" placeholder="👤 Full Name">
+            <input type="tel" id="signupMobile" placeholder="📱 Mobile Number" maxlength="10">
+            <input type="password" id="signupPassword" placeholder="🔒 Password">
+            <input type="password" id="signupConfirm" placeholder="🔒 Confirm Password">
+            <button class="primary" style="width:100%" onclick="signupUser()">Create Account</button>
+        </div>
+
+        <p style="text-align:center;margin-top:20px;color:#888;">
+            🇮🇳 Army • Air Force • Navy
+        </p
+    </div>
+</div>
+
+<!-- ==================== HOME PAGE ==================== -->
+<div id="homePage" class="page">
+    <header>
+        <div id="welcomeText" style="background:#1565c0;color:#fff;padding:10px 18px;border-radius:0;display:inline-block;">
+            👋 Welcome <span id="userNameText"></span>
+        </div> 
+        <p style="margin:10px 0;">Army • Air Force • Navy Mock Test</p>
+       <div onclick="toggleMenu()" 
+style="position:absolute;right:15px;top:15px;cursor:pointer;">
+    <div style="width:25px;height:3px;background:#fff;margin:5px 0;"></div>
+    <div style="width:25px;height:3px;background:#fff;margin:5px 0;"></div>
+    <div style="width:25px;height:3px;background:#fff;margin:5px 0;"></div>
+</div>
+<div id="menuBox" 
+style="display:none;position:absolute;right:15px;top:60px;background:#fff;padding:10px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,.2);">
+    
+    <button onclick="logoutUser()" 
+    style="background:red;color:#fff;border:none;padding:10px 15px;border-radius:8px;">
+        Logout
+    </button>
+
+</div>
+    </header>
+
+    <div class="container">
+      <p style="text-align:center;margin-top:30px;color:#777;font-size:13px;">
+
+        <div class="card">
+            <h2>🪖 Army Mock Test</h2>
+            <button class="primary" onclick="openCategory('Army')">Start</button>
+        </div>
+        <div class="card">
+            <h2>✈️ Air Force Mock Test</h2>
+            <button class="primary" onclick="openCategory('Air Force')">Start</button>
+        </div>
+        <div class="card">
+            <h2>⚓ Navy Mock Test</h2>
+            <button class="primary" onclick="openCategory('Navy')">Start</button>
+        </div>
+       <div class="card">
+    <h2>🔐 Admin Panel</h2>
+
+    <button class="danger" onclick="showAdmin()">
+        Admin Panel
+    </button>
+</div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== CATEGORY PAGE ==================== -->
+<div id="categoryPage" class="page">
+    <header>
+        <h2 id="categoryTitle"></h2>
+    </header>
+    <div style="text-align:center;">
+        <button class="back" onclick="goHome()">⬅ Home</button>
+    </div>
+    <div id="categoryList" class="container"></div>
+</div>
+
+<!-- ==================== MOCK TEST PAGE ==================== -->
+<div id="mockPage" class="page">
+    <header>
+        <h2 id="testTitle"></h2>
+        <p style="position:absolute;right:20px;top:20px;font-size:18px;font-weight:bold;" id="timer">30:00</p>
+    </header>
+
+    <div class="box">
+        <h3><span id="qNo">1</span>. <span id="question"></span></h3><br>
+        
+        <label><input type="radio" name="opt" value="0"> <span id="op1"></span></label>
+        <label><input type="radio" name="opt" value="1"> <span id="op2"></span></label>
+        <label><input type="radio" name="opt" value="2"> <span id="op3"></span></label>
+        <label><input type="radio" name="opt" value="3"> <span id="op4"></span></label>
+         <div id="questionPalette" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0;"></div>
+        <div style="text-align:center;margin-top:20px;">
+            <button class="back" onclick="prev()">Previous</button>
+            <button class="primary" onclick="next()">Next</button>
+            <button class="danger" onclick="submitTest()">Submit Test</button>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== RESULT PAGE ==================== -->
+<div id="resultPage" class="page">
+    <div id="resultBox" class="box"></div>
+    <button class="danger" onclick="resetTest()">Reset Test</button>
+</div>
+
+<!-- ==================== ADMIN PAGE ==================== -->
+<div id="adminPage" class="page">
+    <header>
+        <h2>🔐 Admin Panel</h2>
+    </header>
+    <div class="box" style="max-width:700px;">
+        <h3>Admin Login</h3>
+        <input type="password" id="adminPass" placeholder="Enter Admin Password">
+        <button class="primary" style="width:100%;" onclick="loginAdmin()">Login as Admin</button>
+    </div>
+</div>
+
+<!-- ==================== ADMIN DASHBOARD ==================== -->
+<div id="adminDash" class="page">
+    <header>
+        <h2>Admin Dashboard</h2>
+        <button class="back" onclick="goHome()" style="position:absolute;right:20px;top:20px;">Home</button>
+    </header>
+
+    <div class="box">
+        <h3>Add Question</h3>
+        <select id="paper">
+            <option value="Army GD">Army GD</option>
+            <option value="Army Clerk">Army Clerk</option>
+            <option value="Army Technical">Army Technical</option>
+            <option value="Army Nursing">Army Nursing</option>
+            <option value="Army Tradesman">Army Tradesman</option>
+            <option value="Air Force X">Air Force X</option>
+            <option value="Air Force Y">Air Force Y</option>
+            <option value="Navy MR">Navy MR</option>
+            <option value="Navy SSR">Navy SSR</option>
+        </select>
+        <input type="text" id="mockNo" placeholder="Mock Number (e.g. Mock 1)" value="Mock 1">
+        
+        <textarea id="q" rows="3" placeholder="Question"></textarea>
+        <input type="text" id="o1" placeholder="Option 1">
+        <input type="text" id="o2" placeholder="Option 2">
+        <input type="text" id="o3" placeholder="Option 3">
+        <input type="text" id="o4" placeholder="Option 4">
+        <input type="number" id="ans" placeholder="Correct Option (0-3)" min="0" max="3">
+        
+        <button class="primary" onclick="addQ()">Add Single Question</button>
+
+        <hr>
+        <h3>Bulk Add (Format: Question|Opt1|Opt2|Opt3|Opt4|CorrectIndex)</h3>
+        <textarea id="bulkData" rows="8" placeholder="Paste bulk questions here..."></textarea>
+        <button class="primary" onclick="bulkAdd()">Add Bulk Questions</button>
+    </div>
 </div>
 
 <script>
+function saveProgress(){
+    if(!curPaper || !curMock) return;
 
-// Stars
-for(let i=0;i<80;i++){
-let s=document.createElement("div");
-s.className="star";
-s.style.left=Math.random()*100+"vw";
-s.style.top=Math.random()*100+"vh";
-s.style.animationDuration=(Math.random()*3+1)+"s";
-document.body.appendChild(s);
+    localStorage.setItem("progress", JSON.stringify({
+        paper: curPaper,
+        mock: curMock,
+        current: current,
+        answers: answers,
+        timeLeft: timeLeft
+    }));
+}
+function resetTest(){
+    answers = [];
+    current = 0;
+    loadQuestion();
+    showPage("mockPage");
+}
+let rating = 0;
+
+function shareApp() {
+    if (navigator.share) {
+        navigator.share({
+            title: "Defence Mock Test",
+            text: "Best Mock Test App 🇮🇳",
+            url: window.location.href
+        });
+    } else {
+        alert("Sharing not supported");
+    }
 }
 
-function playPrank(){
-
-const audio=document.getElementById("audio");
-const msg=document.getElementById("msg");
-
-msg.innerHTML=`
-<div style="font-size:100px;animation:pop .4s;">🖕</div>
-<div style="font-size:24px;font-weight:bold;color:#ff4444;">
-Bokachoda 😂
-</div>
-`;
-
-audio.play().catch(function(){});
-
-if(navigator.vibrate){
-navigator.vibrate([300,100,300]);
+function openWhatsApp() {
+    let phone = "918000471461";
+    let msg = "Hi, I need help with the Defence Mock Test App";
+    window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(msg));
 }
 
+function openFeedback() {
+    document.getElementById("ratingBox").style.display = "block";
 }
+
+function setRating(r) {
+    rating = r;
+    let stars = document.querySelectorAll(".star");
+
+    stars.forEach((s, i) => {
+        s.classList.toggle("active", i < r);
+    });
+}
+
+function sendFeedback() {
+    if (rating === 0) {
+        alert("Please give rating first");
+        return;
+    }
+
+    let email = "maheshrabarka2005@gmail.com";
+    let subject = "App Feedback - Rating " + rating;
+    let body = "User gave rating: " + rating + " stars for Defence Mock Test App.";
+
+    window.location.href =
+        "mailto:" + email +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+
+    alert("Thanks for your feedback!");
+}
+const ADMIN_MOBILE = "8000471461";
+function loadPalette() {
+    let total = questionBank[curPaper]?.[curMock]?.length || 0;
+    let html = "";
+
+    for (let i = 0; i < total; i++) {
+        html += `
+        <button
+            style="
+                width:40px;
+                height:40px;
+                border-radius:50%;
+                border:none;
+                cursor:pointer;
+                background:${i === current ? "#1565c0" : (answers[i] === -1 ? "#ccc" : "#4CAF50")};
+                color:white;"
+            onclick="jumpQuestion(${i})">
+            ${i + 1}
+        </button>`;
+    }
+
+    document.getElementById("questionPalette").innerHTML = html;
+}function jumpQuestion(index){
+    saveAnswer();
+    current = index;
+    loadQuestion();
+    loadPalette();
+}
+function loadDB(){
+    let data = localStorage.getItem("qb");
+
+    if(data){
+        try {
+            questionBank = JSON.parse(data);
+        } catch(e){
+            questionBank = {};
+        }
+    } else {
+        questionBank = {};
+    }
+
+    let papers = [
+        "Army GD","Army Clerk","Army Technical","Army Nursing","Army Tradesman",
+        "Air Force X","Air Force Y","Navy MR","Navy SSR"
+    ];
+
+    papers.forEach(p=>{
+        if(!questionBank[p]) questionBank[p] = {};
+    });
+}
+function toggleMenu(){
+    let menu = document.getElementById("menuBox");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+}
+
+// बाहर क्लिक करने पर menu बंद हो जाएगा
+document.addEventListener("click", function(e){
+    let menu = document.getElementById("menuBox");
+    let icon = e.target.closest("div[onclick='toggleMenu()']");
+
+    if(!icon && menu){
+        menu.style.display = "none";
+    }
+});
+// ==================== MOBILE INPUT LIMIT ====================
+function enforceMobileLimit(id){
+    let input = document.getElementById(id);
+    if(input) {
+        input.addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, "");
+            if(this.value.length > 10) this.value = this.value.slice(0,10);
+        });
+    }
+}
+
+// Initialize
+enforceMobileLimit("loginMobile");
+enforceMobileLimit("signupMobile");
+
+// ==================== PAGE SYSTEM ====================
+function showPage(id){
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+function goHome(){
+    showPage("homePage");
+}
+function saveProgress(){
+    localStorage.setItem("progress", JSON.stringify({
+        paper: curPaper,
+        mock: curMock,
+        current: current,
+        answers: answers,
+        timeLeft: timeLeft
+    }));
+}
+
+function loadProgress(){
+    let data = JSON.parse(localStorage.getItem("progress"));
+    if(data){
+        curPaper = data.paper;
+        curMock = data.mock;
+        current = data.current;
+        answers = data.answers;
+        timeLeft = data.timeLeft;
+    }
+}
+
+// ==================== CATEGORY MAP ====================
+const map = {
+    "Army": ["Army GD","Army Clerk","Army Technical","Army Nursing","Army Tradesman"],
+    "Air Force": ["Air Force X","Air Force Y"],
+    "Navy": ["Navy MR","Navy SSR"]
+};
+
+function openCategory(exam){
+    showPage("categoryPage");
+    document.getElementById("categoryTitle").innerText = exam;
+
+    let html = "";
+    map[exam].forEach(test => {
+        html += `
+        <div class="card">
+            <h3>${test}</h3>
+            <button class="primary" onclick="openMockList('${test}')">View Mocks</button>
+        </div>`;
+    });
+    document.getElementById("categoryList").innerHTML = html;
+}
+
+// ==================== QUESTION BANK ==============
+let questionBank = {};
+
+loadDB();
+let curPaper = "", curMock = "", current = 0, answers = [], timer, timeLeft = 1800;
+
+// ==================== MOCK LIST ====================
+function openMockList(paper){
+    curPaper = paper;
+    showPage("categoryPage");
+    document.getElementById("categoryTitle").innerText = paper + " - Select Mock";
+
+    let html = "";
+
+    for(let i = 1; i <= 10; i++){
+        let m = "Mock " + i;
+        let count = (questionBank[paper] && questionBank[paper][m])
+            ? questionBank[paper][m].length
+            : 0;
+
+        html += `
+        <div class="card">
+            <h3>${m}</h3>
+            <p>${count} Questions</p>
+            <button class="primary"
+                ${count === 0 ? "disabled" : ""}
+                onclick="openMock('${paper}','${m}')">
+                ${count === 0 ? "No Questions" : "Start"}
+            </button>
+        </div>`;
+    }
+
+    document.getElementById("categoryList").innerHTML = html;
+}
+
+function openMock(paper, mock){
+
+    if (!questionBank[paper] ||
+        !questionBank[paper][mock] ||
+        questionBank[paper][mock].length === 0) {
+
+        alert("No questions available in this mock.");
+        return;
+    }
+
+    curPaper = paper;
+    curMock = mock;
+    current = 0;
+    answers = new Array(questionBank[paper][mock].length).fill(-1);
+
+    showPage("mockPage");
+    document.getElementById("testTitle").innerText = `${paper} - ${mock}`;
+    document.getElementById("timer").innerText = "30:00";
+
+    loadQuestion();
+    loadPalette();
+    startTimer();
+}
+// ==================== TEST FUNCTIONS ====================
+function loadQuestion() {
+
+    const q = questionBank?.[curPaper]?.[curMock]?.[current];
+
+    if (!q) {
+        document.getElementById("question").innerText = "No Questions Available";
+        document.getElementById("qNo").innerText = "";
+        document.getElementById("op1").innerText = "";
+        document.getElementById("op2").innerText = "";
+        document.getElementById("op3").innerText = "";
+        document.getElementById("op4").innerText = "";
+
+        document.querySelectorAll("input[name='opt']").forEach(r => {
+            r.checked = false;
+            r.disabled = true;
+        });
+
+        return;
+    }
+
+    document.querySelectorAll("input[name='opt']").forEach(r => {
+        r.disabled = false;
+        r.checked = false;
+    });
+
+    document.getElementById("qNo").innerText = current + 1;
+    document.getElementById("question").innerText = q.q;
+    document.getElementById("op1").innerText = q.a[0] || "";
+    document.getElementById("op2").innerText = q.a[1] || "";
+    document.getElementById("op3").innerText = q.a[2] || "";
+    document.getElementById("op4").innerText = q.a[3] || "";
+
+    if (Array.isArray(answers) && answers[current] >= 0 && answers[current] <= 3) {
+        const radios = document.querySelectorAll("input[name='opt']");
+        if (radios[answers[current]]) {
+            radios[answers[current]].checked = true;
+        }
+    }
+}
+
+function saveAnswer() {
+
+    if (!Array.isArray(answers)) return;
+
+    let selected = -1;
+
+    document.querySelectorAll("input[name='opt']").forEach((r, i) => {
+        if (r.checked) selected = i;
+    });
+
+    answers[current] = selected;
+}
+
+function next() {
+   saveAnswer();
+saveProgress();
+
+    const total = questionBank?.[curPaper]?.[curMock]?.length || 0;
+
+    if (current < total - 1) {
+        current++;
+        loadQuestion();
+
+        if (typeof loadPalette === "function") {
+            loadPalette();
+        }
+    }
+}
+
+function prev() {
+
+    saveAnswer();
+saveProgress();
+
+    if (current > 0) {
+        current--;
+        loadQuestion();
+
+        if (typeof loadPalette === "function") {
+            loadPalette();
+        }
+    }
+}
+
+function startTimer() {
+
+    clearInterval(timer);
+
+    timeLeft = 1800;
+
+    document.getElementById("timer").innerText = "30:00";
+
+    timer = setInterval(() => {
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            submitTest();
+            return;
+        }
+
+        timeLeft--;
+
+        const m = Math.floor(timeLeft / 60);
+        const s = timeLeft % 60;
+
+        document.getElementById("timer").innerText =
+            `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+
+    }, 1000);
+}
+// ==================== SUBMIT TEST ====================
+function submitTest(){
+
+    if(!confirm("Are you sure you want to submit the test?")){
+        return;
+    }
+
+    saveAnswer();
+    clearInterval(timer);
+
+    let q = questionBank[curPaper]?.[curMock] || [];
+    let score = 0, wrong = 0, unattempted = 0;
+    let reviewHTML = "";
+
+    for(let i = 0; i < q.length; i++){
+
+        if(answers[i] === undefined || answers[i] === -1){
+            unattempted++;
+        }
+        else if(answers[i] === q[i].c){
+            score++;
+        }
+        else{
+            wrong++;
+        }
+
+        reviewHTML += `
+        <div class="card" style="text-align:left;border-left:5px solid ${answers[i] === q[i].c ? 'green' : 'red'}">
+            <b>Q${i+1}:</b> ${q[i].q}<br><br>
+            <b>Your Answer:</b> ${answers[i] === -1 ? "Not Attempted" : q[i].a[answers[i]]}<br>
+            <b>Correct Answer:</b> ${q[i].a[q[i].c]}
+        </div>`;
+    }
+
+    showPage("resultPage");
+
+    let percent = q.length ? ((score / q.length) * 100).toFixed(2) : 0;
+
+    document.getElementById("resultBox").innerHTML = `
+        <h2 style="text-align:center;color:#1565c0;">🏆 Result</h2>
+
+        <div class="container">
+            <div class="card"><h3>Total</h3><h2>${q.length}</h2></div>
+            <div class="card"><h3>Correct</h3><h2 style="color:green">${score}</h2></div>
+            <div class="card"><h3>Wrong</h3><h2 style="color:red">${wrong}</h2></div>
+            <div class="card"><h3>Unattempted</h3><h2 style="color:orange">${unattempted}</h2></div>
+        </div>
+
+        <h2 style="text-align:center;margin-top:40px;">📊 ${percent}%</h2>
+
+        <h3 style="text-align:center;color:${percent >= 50 ? 'green' : 'red'};">
+            ${percent >= 50 ? "✅ PASS" : "❌ FAIL"}
+        </h3>
+
+        <hr>
+
+        <h2 style="margin-top:20px;">Answer Review</h2>
+
+        ${reviewHTML}
+
+        <div style="text-align:center;margin-top:20px;">
+            <button class="primary" onclick="openMock(curPaper,curMock)">🔄 Restart Test</button>
+            <button class="back" onclick="goHome()">🏠 Home</button>
+        </div>
+    `;
+}
+
+// ==================== ADMIN FUNCTIONS ====================
+
+function showAdmin() {
+    showPage("adminPage");
+}
+
+// ⚡ FAST + SMOOTH ADMIN LOGIN (NO LAG)
+function loginAdmin() {
+    const input = document.getElementById("adminPass");
+    const pass = input.value.trim();
+
+    if (!pass) {
+        input.focus();
+        return;
+    }
+
+    if (pass === "admin123") {
+        input.value = "";
+        showPage("adminDash");
+        showToast("Login Successful ✅");
+    } else {
+        input.value = "";
+        input.focus();
+        showToast("Wrong Password ❌");
+    }
+}
+
+// ==================== ADD SINGLE QUESTION ====================
+
+function addQ() {
+
+    const p = document.getElementById("paper").value;
+    const m = document.getElementById("mockNo").value.trim() || "Mock 1";
+
+    const qText = document.getElementById("q").value.trim();
+    const o1 = document.getElementById("o1").value.trim();
+    const o2 = document.getElementById("o2").value.trim();
+    const o3 = document.getElementById("o3").value.trim();
+    const o4 = document.getElementById("o4").value.trim();
+    const ans = Number(document.getElementById("ans").value);
+
+    if (!qText || !o1 || !o2 || !o3 || !o4) {
+        showToast("Please fill all fields ❌");
+        return;
+    }
+
+    if (!Number.isInteger(ans) || ans < 0 || ans > 3) {
+        showToast("Answer must be between 0-3 ❌");
+        return;
+    }
+
+    if (!questionBank[p]) questionBank[p] = {};
+    if (!questionBank[p][m]) questionBank[p][m] = [];
+
+    questionBank[p][m].push({
+        q: qText,
+        a: [o1, o2, o3, o4],
+        c: ans
+    });
+
+    saveDB();
+
+    showToast("Question Added ✅");
+
+    document.getElementById("q").value = "";
+    document.getElementById("o1").value = "";
+    document.getElementById("o2").value = "";
+    document.getElementById("o3").value = "";
+    document.getElementById("o4").value = "";
+    document.getElementById("ans").value = "";
+}
+
+// ==================== BULK ADD QUESTIONS ====================
+
+function bulkAdd() {
+
+    const p = document.getElementById("paper").value;
+    const m = document.getElementById("mockNo").value.trim() || "Mock 1";
+    const text = document.getElementById("bulkData").value.trim();
+
+    if (!text) {
+        showToast("Empty data ❌");
+        return;
+    }
+
+    if (!questionBank[p]) questionBank[p] = {};
+    if (!questionBank[p][m]) questionBank[p][m] = [];
+
+    let added = 0;
+
+    text.split("\n").forEach(line => {
+
+        const parts = line.trim().split("|");
+
+        if (parts.length !== 6) return;
+
+        const ans = Number(parts[5]);
+
+        if (!Number.isInteger(ans) || ans < 0 || ans > 3) return;
+
+        questionBank[p][m].push({
+            q: parts[0].trim(),
+            a: [
+                parts[1].trim(),
+                parts[2].trim(),
+                parts[3].trim(),
+                parts[4].trim()
+            ],
+            c: ans
+        });
+
+        added++;
+    });
+
+    saveDB();
+
+    document.getElementById("bulkData").value = "";
+
+    showToast(`${added} Questions Added ✅`);
+}
+
+// ==================== SAVE DATABASE ====================
+
+function saveDB() {
+    try {
+        localStorage.setItem("qb", JSON.stringify(questionBank));
+    } catch (e) {
+        console.error(e);
+        showToast("Storage Error ❌");
+    }
+}
+
+// ==================== TOAST (NO ALERT LAG FIX) ====================
+
+function showToast(msg){
+    let t = document.createElement("div");
+
+    t.innerText = msg;
+
+    t.style = `
+        position:fixed;
+        bottom:80px;
+        left:50%;
+        transform:translateX(-50%);
+        background:rgba(0,0,0,0.85);
+        color:#fff;
+        padding:10px 16px;
+        border-radius:8px;
+        z-index:9999;
+        font-size:14px;
+    `;
+
+    document.body.appendChild(t);
+
+    setTimeout(()=> t.remove(), 1500);
+}
+// ==================== USER AUTH ====================
+
+function signupUser() {
+
+    const name = document.getElementById("signupName").value.trim();
+    const mobile = document.getElementById("signupMobile").value.trim();
+    const pass = document.getElementById("signupPassword").value;
+    const cpass = document.getElementById("signupConfirm").value;
+
+    if (!name || !mobile || !pass || !cpass) {
+        alert("All fields required");
+        return;
+    }
+
+    if (!/^\d{10}$/.test(mobile)) {
+        alert("Invalid Mobile Number");
+        return;
+    }
+
+    if (pass !== cpass) {
+        alert("Passwords do not match");
+        return;
+    }
+
+    const user = {
+        name,
+        mobile,
+        password: pass
+    };
+
+    localStorage.setItem("userAccount", JSON.stringify(user));
+
+    document.getElementById("signupName").value = "";
+    document.getElementById("signupMobile").value = "";
+    document.getElementById("signupPassword").value = "";
+    document.getElementById("signupConfirm").value = "";
+
+    alert("Account Created Successfully!");
+
+    showLogin();
+}
+
+function loginUser() {
+
+    const mobile = document.getElementById("loginMobile").value.trim();
+    const pass = document.getElementById("loginPassword").value;
+
+    let user = null;
+
+    try {
+        user = JSON.parse(localStorage.getItem("userAccount"));
+    } catch (e) {
+        user = null;
+    }
+
+    if (!user) {
+        alert("Please signup first");
+        return;
+    }
+
+    if (user.mobile !== mobile || user.password !== pass) {
+        alert("Wrong credentials");
+        return;
+    }
+
+    loadDB();
+
+    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("currentUser", JSON.stringify(user));
+
+    document.getElementById("userNameText").innerText = user.name;
+
+  document.getElementById("userNameText").innerText = user.name;
+
+// Admin button control
+const adminCard = document.querySelector(".danger").parentElement;
+
+if (user.mobile === ADMIN_MOBILE) {
+    adminCard.style.display = "block"; // show admin
+} else {
+    adminCard.style.display = "none";  // hide admin
+}
+
+showPage("homePage");
+}
+
+function logoutUser() {
+
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("currentUser");
+
+    document.getElementById("loginPassword").value = "";
+
+    showPage("loginPage");
+}
+
+// ==================== UI TOGGLE ====================
+
+function showLogin() {
+
+    document.getElementById("loginBox").style.display = "block";
+    document.getElementById("signupBox").style.display = "none";
+
+    document.getElementById("loginTab").className = "primary";
+    document.getElementById("signupTab").className = "back";
+}
+
+function showSignup() {
+
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("signupBox").style.display = "block";
+
+    document.getElementById("signupTab").className = "primary";
+    document.getElementById("loginTab").className = "back";
+}
+
+// ==================== INITIALIZE ====================
+
+window.onload = function () {
+
+    loadDB();
+
+    try {
+
+        if (localStorage.getItem("loggedIn") === "true") {
+
+            const user = JSON.parse(localStorage.getItem("currentUser"));
+
+            if (user) {
+                document.getElementById("userNameText").innerText = user.name;
+                showPage("homePage");
+                return;
+            }
+        }
+
+    } catch (e) {
+        localStorage.removeItem("loggedIn");
+        localStorage.removeItem("currentUser");
+    }
+
+    showLogin();
+}; 
 
 </script>
+<div class="footer">
 
+    <button onclick="shareApp()">🔗 Share</button>
+    <button onclick="openWhatsApp()">💬 Help</button>
+    <button onclick="openFeedback()">⭐ Feedback</button>
+
+    <div id="ratingBox" style="margin-top:5px;display:none;">
+        <span class="star" onclick="setRating(1)">★</span>
+        <span class="star" onclick="setRating(2)">★</span>
+        <span class="star" onclick="setRating(3)">★</span>
+        <span class="star" onclick="setRating(4)">★</span>
+        <span class="star" onclick="setRating(5)">★</span>
+        <button onclick="sendFeedback()" style="background:green;color:#fff;">Send</button>
+    </div>
+
+</div>
 </body>
+
 </html>
