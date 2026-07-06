@@ -7,6 +7,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+input, textarea {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+}
 .footer {
     position: fixed;
     bottom: 0;
@@ -58,7 +62,7 @@
 }
 body{
     background:#eef3f8;
-    padding-bottom:60px;
+    padding-bottom:90px; /* Fixed Bottom Buttons के लिए */
 }
 .page{
     display:none;
@@ -83,7 +87,14 @@ button{
     font-weight:bold;
     margin:8px;
 }
-.primary{background:#1565c0;color:#fff;}
+.primary{
+    width:100%;
+    background:#111;
+    color:#fff;
+    border-radius:12px;
+    padding:14px;
+    font-size:16px;
+}
 .danger{background:red;color:#fff;}
 .back{background:#444;color:#fff;}
 
@@ -110,11 +121,19 @@ button{
     border-radius:12px;
 }
 input,select,textarea{
-    padding:10px;
     width:100%;
-    margin:6px 0;
-    border-radius:8px;
-    border:1px solid #ccc;
+    padding:14px;
+    margin:10px 0;
+    border:1px solid #ddd;
+    border-radius:12px;
+    background:#f8f8f8;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#1565c0;
+    background:#fff;
 }
 label{
     display:flex;
@@ -130,24 +149,99 @@ input[type="radio"]{
     transform:scale(1.2);
     cursor:pointer;
 }
+.bottomBar{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    display:flex;
+    gap:8px;
+    padding:10px;
+    background:#fff;
+    box-shadow:0 -2px 8px rgba(0,0,0,.15);
+    z-index:999;
+}
+
+.submitBtn{
+    flex:1;
+    background:#ff3b5c;
+    color:#fff;
+}
+
+.markBtn{
+    flex:1;
+    background:#fff;
+    color:#000;
+    border:2px solid #000;
+}
+
+.saveBtn{
+    flex:1;
+    background:#2196f3;
+    color:#fff;
+}
+.optionBox{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:15px;
+    margin:12px 0;
+    border:1px solid #ddd;
+    border-radius:12px;
+    background:#fff;
+    cursor:pointer;
+}
+
+.optionBox:hover{
+    border-color:#1565c0;
+}
+
+.optionBox input[type="radio"]{
+    width:20px;
+    height:20px;
+}
+#question{
+    font-size:20px;
+    font-weight:600;
+    line-height:1.5;
+}
 </style>
 </head>
-
-<div class="footer">
-| Built with ❤️ by MR 🇮🇳| © All Rights Reserved
-</div>
 <body>
+   
 
 <!-- ==================== LOGIN / SIGNUP PAGE ==================== -->
 <div id="loginPage" class="page active">
     <div style="max-width:430px;margin:35px auto;background:#fff;padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.15);">
 
-        <div style="text-align:center;">
-            <div style="font-size:70px;">🛡️</div>
-            <h1 style="color:#1565c0;🙏🏻>Welcome🙏🏻</h1>
-            <p style="color:#777;">Defence Mock Test Portal</p>
-        </div>
+        <div style="text-align:center;margin-bottom:25px;">
 
+<img src="logo.png"
+style="
+width:120px;
+height:140px;
+object-fit:cover;
+clip-path:polygon(
+50% 0%,
+100% 20%,
+90% 75%,
+50% 100%,
+10% 75%,
+0% 20%
+);
+display:block;
+margin:auto;
+">
+
+    <h2 style="margin-top:15px;color:#1565c0;">
+        Welcome
+    </h2>
+
+    <p style="color:#777;">
+        Defence Mock Test
+    </p>
+
+</div>
         <!-- TAB BUTTONS -->
         <div style="display:flex;margin-top:25px;gap:10px;">
             <button id="loginTab" class="primary" style="flex:1;" onclick="showLogin()">Login</button>
@@ -180,37 +274,123 @@ input[type="radio"]{
         </div>
 
         <p style="text-align:center;margin-top:20px;color:#888;">
-            🇮🇳 Army • Air Force • Navy
-        </p
+    🇮🇳 Army • Air Force • Navy
+</p>
     </div>
 </div>
 
 <!-- ==================== HOME PAGE ==================== -->
 <div id="homePage" class="page">
-    <header>
-        <div id="welcomeText" style="background:#1565c0;color:#fff;padding:10px 18px;border-radius:0;display:inline-block;">
-            👋 Welcome <span id="userNameText"></span>
-        </div> 
-        <p style="margin:10px 0;">Army • Air Force • Navy Mock Test</p>
-       <div onclick="toggleMenu()" 
-style="position:absolute;right:15px;top:15px;cursor:pointer;">
-    <div style="width:25px;height:3px;background:#fff;margin:5px 0;"></div>
-    <div style="width:25px;height:3px;background:#fff;margin:5px 0;"></div>
-    <div style="width:25px;height:3px;background:#fff;margin:5px 0;"></div>
+    <header style="
+background:linear-gradient(135deg,#050505,#111827,#1565c0);
+padding:14px 18px;
+border-radius:0 0 18px 18px;
+box-shadow:0 6px 18px rgba(0,0,0,.25);
+position:relative;
+overflow:hidden;
+">
+
+<div style="display:flex;justify-content:space-between;align-items:center;">
+
+<div style="display:flex;align-items:center;gap:10px;">
+
+<div style="
+width:45px;
+height:45px;
+border-radius:12px;
+background:linear-gradient(135deg,#ffd700,#ff9800);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+box-shadow:0 0 10px rgba(255,215,0,.5);
+">
+🪖
 </div>
-<div id="menuBox" 
-style="display:none;position:absolute;right:15px;top:60px;background:#fff;padding:10px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,.2);">
-    
-    <button onclick="logoutUser()" 
-    style="background:red;color:#fff;border:none;padding:10px 15px;border-radius:8px;">
-        Logout
-    </button>
+
+<div>
+<div style="color:#bdbdbd;font-size:11px;letter-spacing:1px;">
+❤️ WELCOME ❤️
+</div>
+
+<div style="
+color:#fff;
+font-size:18px;
+font-weight:700;
+">
+<span id="userNameText"></span>
+</div>
 
 </div>
-    </header>
+
+</div>
+
+<div onclick="toggleMenu()" style="
+font-size:30px;
+color:#fff;
+cursor:pointer;
+padding:4px;
+">
+☰
+</div>
+
+</div>
+
+<div style="
+margin-top:12px;
+text-align:center;
+">
+
+<h1 style="
+font-size:22px;
+font-weight:800;
+margin:0;
+background:linear-gradient(90deg,#ffffff,#ffd700,#ffffff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+">
+DEFENCE MOCK TEST
+</h1>
+
+<div style="
+margin-top:5px;
+font-size:13px;
+color:#e0e0e0;
+">
+⚔️ Army • ✈️ Air Force • ⚓ Navy
+</div>
+
+</div>
+
+<div id="menuBox" style="
+display:none;
+position:absolute;
+right:15px;
+top:55px;
+background:#fff;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 8px 18px rgba(0,0,0,.3);
+">
+
+<button onclick="logoutUser()" style="
+width:140px;
+padding:12px;
+border:none;
+background:#fff;
+color:#d32f2f;
+font-weight:600;
+cursor:pointer;
+">
+🚪 Logout
+</button>
+
+</div>
+
+</header>
 
     <div class="container">
-      <p style="text-align:center;margin-top:30px;color:#777;font-size:13px;">
+      <p style="text-align:center;margin-top:30px;color:#777;font-size:13px;"></p>
 
         <div class="card">
             <h2>🪖 Army Mock Test</h2>
@@ -245,6 +425,49 @@ style="display:none;position:absolute;right:15px;top:60px;background:#fff;paddin
     </div>
     <div id="categoryList" class="container"></div>
 </div>
+<div id="startPopup"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+z-index:9999;
+justify-content:center;
+align-items:center;
+">
+
+<div style="
+background:#fff;
+width:320px;
+padding:20px;
+border-radius:20px;
+text-align:center;
+">
+
+<h2 id="popupTitle"></h2>
+
+<hr>
+
+<p><b>Total Questions :</b>
+<span id="popupQuestions"></span></p>
+
+<p><b>Total Time :</b>
+<span id="popupTime"></span> Minutes</p>
+
+<p><b>Maximum Marks :</b>
+<span id="popupMarks"></span></p>
+
+<button class="primary"
+onclick="startRealTest()">
+Start Test
+</button>
+
+</div>
+
+</div>
 
 <!-- ==================== MOCK TEST PAGE ==================== -->
 <div id="mockPage" class="page">
@@ -252,15 +475,70 @@ style="display:none;position:absolute;right:15px;top:60px;background:#fff;paddin
         <h2 id="testTitle"></h2>
         <p style="position:absolute;right:20px;top:20px;font-size:18px;font-weight:bold;" id="timer">30:00</p>
     </header>
+    <div id="subjectTabs"
+style="
+display:flex;
+overflow-x:auto;
+background:#fff;
+border-bottom:2px solid #ddd;
+">
+
+</div>
 
     <div class="box">
         <h3><span id="qNo">1</span>. <span id="question"></span></h3><br>
         
-        <label><input type="radio" name="opt" value="0"> <span id="op1"></span></label>
-        <label><input type="radio" name="opt" value="1"> <span id="op2"></span></label>
-        <label><input type="radio" name="opt" value="2"> <span id="op3"></span></label>
-        <label><input type="radio" name="opt" value="3"> <span id="op4"></span></label>
-         <div id="questionPalette" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0;"></div>
+        <label class="optionBox">
+    <input type="radio" name="opt" value="0">
+    <span id="op1"></span>
+</label>
+
+<label class="optionBox">
+    <input type="radio" name="opt" value="1">
+    <span id="op2"></span>
+</label>
+
+<label class="optionBox">
+    <input type="radio" name="opt" value="2">
+    <span id="op3"></span>
+</label>
+
+<label class="optionBox">
+    <input type="radio" name="opt" value="3">
+    <span id="op4"></span>
+</label>
+        <div id="paletteDrawer" style="
+position:fixed;
+right:-260px;
+top:0;
+width:260px;
+height:100%;
+background:#fff;
+box-shadow:-3px 0 10px rgba(0,0,0,.2);
+transition:.3s;
+overflow:auto;
+z-index:9999;
+padding:15px;
+">
+
+<h3>Question Palette</h3>
+
+<div id="questionPalette"
+style="display:flex;flex-wrap:wrap;gap:8px;">
+</div>
+
+</div>
+
+<button onclick="togglePalette()" style="
+position:fixed;
+right:10px;
+top:100px;
+z-index:10000;
+padding:10px;
+border-radius:50%;
+">
+☰
+</button></div>
         <div style="text-align:center;margin-top:20px;">
             <button class="back" onclick="prev()">Previous</button>
             <button class="primary" onclick="next()">Next</button>
@@ -272,8 +550,8 @@ style="display:none;position:absolute;right:15px;top:60px;background:#fff;paddin
 <!-- ==================== RESULT PAGE ==================== -->
 <div id="resultPage" class="page">
     <div id="resultBox" class="box"></div>
-    <button class="danger" onclick="resetTest()">Reset Test</button>
 </div>
+  
 
 <!-- ==================== ADMIN PAGE ==================== -->
 <div id="adminPage" class="page">
@@ -282,7 +560,14 @@ style="display:none;position:absolute;right:15px;top:60px;background:#fff;paddin
     </header>
     <div class="box" style="max-width:700px;">
         <h3>Admin Login</h3>
-        <input type="password" id="adminPass" placeholder="Enter Admin Password">
+        <input 
+    type="password" 
+    id="adminPass" 
+    placeholder="Enter Admin Password"
+    autocomplete="off"
+    autocapitalize="off"
+    style="user-select:text; -webkit-user-select:text;"
+>
         <button class="primary" style="width:100%;" onclick="loginAdmin()">Login as Admin</button>
     </div>
 </div>
@@ -295,8 +580,11 @@ style="display:none;position:absolute;right:15px;top:60px;background:#fff;paddin
     </header>
 
     <div class="box">
+
+        <!-- ================= ADD QUESTION ================= -->
         <h3>Add Question</h3>
-        <select id="paper">
+
+        <select id="paper" onchange="loadSubjectList()">
             <option value="Army GD">Army GD</option>
             <option value="Army Clerk">Army Clerk</option>
             <option value="Army Technical">Army Technical</option>
@@ -307,25 +595,220 @@ style="display:none;position:absolute;right:15px;top:60px;background:#fff;paddin
             <option value="Navy MR">Navy MR</option>
             <option value="Navy SSR">Navy SSR</option>
         </select>
+
         <input type="text" id="mockNo" placeholder="Mock Number (e.g. Mock 1)" value="Mock 1">
-        
+        <select id="subject"></select>
+
         <textarea id="q" rows="3" placeholder="Question"></textarea>
         <input type="text" id="o1" placeholder="Option 1">
         <input type="text" id="o2" placeholder="Option 2">
         <input type="text" id="o3" placeholder="Option 3">
         <input type="text" id="o4" placeholder="Option 4">
         <input type="number" id="ans" placeholder="Correct Option (0-3)" min="0" max="3">
-        
+
         <button class="primary" onclick="addQ()">Add Single Question</button>
 
         <hr>
+
+        <!-- ================= BULK ADD ================= -->
         <h3>Bulk Add (Format: Question|Opt1|Opt2|Opt3|Opt4|CorrectIndex)</h3>
-        <textarea id="bulkData" rows="8" placeholder="Paste bulk questions here..."></textarea>
+        <textarea id="bulkData" rows="6" placeholder="Paste bulk questions here..."></textarea>
         <button class="primary" onclick="bulkAdd()">Add Bulk Questions</button>
+
+        <hr>
+
+        <!-- ================= DELETE QUESTION ================= -->
+        <h3>Delete Question</h3>
+
+        <select id="delPaper">
+            <option value="Army GD">Army GD</option>
+            <option value="Army Clerk">Army Clerk</option>
+            <option value="Army Technical">Army Technical</option>
+            <option value="Army Nursing">Army Nursing</option>
+            <option value="Army Tradesman">Army Tradesman</option>
+            <option value="Air Force X">Air Force X</option>
+            <option value="Air Force Y">Air Force Y</option>
+            <option value="Navy MR">Navy MR</option>
+            <option value="Navy SSR">Navy SSR</option>
+        </select>
+        <hr>
+
+<h3>Clear Full Mock Test</h3>
+
+<select id="clearPaper">
+    <option value="Army GD">Army GD</option>
+    <option value="Army Clerk">Army Clerk</option>
+    <option value="Army Technical">Army Technical</option>
+    <option value="Army Nursing">Army Nursing</option>
+    <option value="Army Tradesman">Army Tradesman</option>
+    <option value="Air Force X">Air Force X</option>
+    <option value="Air Force Y">Air Force Y</option>
+    <option value="Navy MR">Navy MR</option>
+    <option value="Navy SSR">Navy SSR</option>
+</select>
+
+<select id="clearMock"></select>
+
+<button class="danger" onclick="clearMockTest()">
+    Clear Full Mock
+</button>
+
+        <select id="delMock"></select>
+
+        <input type="number" id="delIndex" placeholder="Question No (1,2,3...)">
+
+        <button class="danger" onclick="deleteQuestion()">Delete Question</button>
+
     </div>
 </div>
 
 <script>
+function clearMockTest() {
+    const p = document.getElementById("clearPaper").value;
+    const m = document.getElementById("clearMock").value;
+
+    if (!questionBank[p] || !questionBank[p][m]) {
+        showToast("Mock not found ❌");
+        return;
+    }
+
+    if (!confirm(`Are you sure you want to DELETE ALL questions of ${p} - ${m}?`)) {
+        return;
+    }
+
+    questionBank[p][m] = []; // 🔥 FULL CLEAR
+
+    saveDB();
+
+    showToast("Mock Cleared Successfully ✅");
+}
+function loadDeleteMocks() {
+    const paper = document.getElementById("delPaper").value;
+    const mockSelect = document.getElementById("delMock");
+
+    mockSelect.innerHTML = "";
+
+    for (let i = 1; i <= 10; i++) {
+        let m = "Mock " + i;
+
+        mockSelect.innerHTML += `<option value="${m}">${m}</option>`;
+    }
+}
+function loadClearMocks() {
+    const mockSelect = document.getElementById("clearMock");
+    mockSelect.innerHTML = "";
+
+    for (let i = 1; i <= 10; i++) {
+        mockSelect.innerHTML += `<option value="Mock ${i}">Mock ${i}</option>`;
+    }
+}
+function togglePalette(){
+    let d=document.getElementById("paletteDrawer");
+    d.style.right = d.style.right=="0px" ? "-260px" : "0px";
+}
+function deleteQuestion() {
+    const p = document.getElementById("delPaper").value;
+    const m = document.getElementById("delMock").value;
+    const index = Number(document.getElementById("delIndex").value) - 1;
+
+    if (!questionBank[p] || !questionBank[p][m]) {
+        showToast("Invalid Paper/Mock ❌");
+        return;
+    }
+
+    if (index < 0 || index >= questionBank[p][m].length) {
+        showToast("Invalid Question Number ❌");
+        return;
+    }
+
+    questionBank[p][m].splice(index, 1);
+
+    saveDB();
+
+    showToast("Question Deleted ✅");
+}
+function loadSubjectList() {
+
+    const paper = document.getElementById("paper").value;
+    const subject = document.getElementById("subject");
+
+    subject.innerHTML = "";
+
+    examPattern[paper].subjects.forEach(item => {
+
+        const option = document.createElement("option");
+
+        option.value = item.name;
+        option.textContent = item.name;
+
+        subject.appendChild(option);
+
+    });
+
+}
+function markQuestion(){
+    saveAnswer();
+    next();
+}
+function updateSubject(){
+
+    const subjects = examPattern[curPaper].subjects;
+
+    let currentSubject = 0;
+    let total = 0;
+
+    for(let i=0;i<subjects.length;i++){
+
+        total += subjects[i].questions;
+
+        if(current < total){
+            currentSubject = i;
+            break;
+        }
+    }
+
+    let html = "";
+
+    subjects.forEach((sub,index)=>{
+
+        html += `
+        <div
+        style="
+        padding:15px 20px;
+        font-weight:bold;
+        white-space:nowrap;
+        border-bottom:3px solid ${index===currentSubject?"#1565c0":"transparent"};
+        color:${index===currentSubject?"#1565c0":"#555"};
+        ">
+        ${sub.name} (${sub.questions})
+        </div>`;
+    });
+
+    document.getElementById("subjectTabs").innerHTML = html;
+}
+function loadSubjects(){
+
+    const subjects = examPattern[curPaper].subjects;
+
+    let html = "";
+
+    subjects.forEach((sub,index)=>{
+
+        html += `
+        <div
+        style="
+        padding:15px 20px;
+        font-weight:bold;
+        white-space:nowrap;
+        border-bottom:3px solid ${index===0?"#1565c0":"transparent"};
+        color:${index===0?"#1565c0":"#555"};
+        ">
+        ${sub.name} (${sub.questions})
+        </div>`;
+    });
+
+    document.getElementById("subjectTabs").innerHTML = html;
+}
 function saveProgress(){
     if(!curPaper || !curMock) return;
 
@@ -342,6 +825,8 @@ function resetTest(){
     current = 0;
     loadQuestion();
     showPage("mockPage");
+    loadSubjects();
+    updateSubject();
 }
 let rating = 0;
 
@@ -473,14 +958,22 @@ enforceMobileLimit("loginMobile");
 enforceMobileLimit("signupMobile");
 
 // ==================== PAGE SYSTEM ====================
+
 function showPage(id){
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
+
+    const footer = document.getElementById("footerBar");
+
+    if (footer) {
+        footer.style.display = (id === "loginPage") ? "none" : "block";
+    }
 }
 
 function goHome(){
     showPage("homePage");
 }
+
 function saveProgress(){
     localStorage.setItem("progress", JSON.stringify({
         paper: curPaper,
@@ -507,8 +1000,122 @@ const map = {
     "Army": ["Army GD","Army Clerk","Army Technical","Army Nursing","Army Tradesman"],
     "Air Force": ["Air Force X","Air Force Y"],
     "Navy": ["Navy MR","Navy SSR"]
-};
+}; const examPattern = {
 
+"Army GD": {
+    subjects: [
+        {name:"General Knowledge", questions:15},
+        {name:"General Science", questions:15},
+        {name:"Mathematics", questions:15},
+        {name:"Reasoning", questions:5}
+    ],
+    totalQuestions:50,
+    totalMarks:50,
+    time:60,
+    negative:0
+},
+
+"Army Clerk": {
+    subjects: [
+        {name:"General Knowledge", questions:5},
+        {name:"General Science", questions:5},
+        {name:"Mathematics", questions:15},
+        {name:"Computer", questions:5},
+        {name:"English", questions:70}
+    ],
+    totalQuestions:100,
+    totalMarks:100,
+    time:60,
+    negative:0
+},
+
+"Army Technical": {
+    subjects: [
+        {name:"Physics", questions:15},
+        {name:"Chemistry", questions:15},
+        {name:"Mathematics", questions:15},
+        {name:"General Knowledge", questions:5}
+    ],
+    totalQuestions:50,
+    totalMarks:50,
+    time:60,
+    negative:0
+},
+
+"Army Nursing": {
+    subjects: [
+        {name:"Biology", questions:15},
+        {name:"Physics", questions:10},
+        {name:"Chemistry", questions:15},
+        {name:"General Knowledge", questions:10}
+    ],
+    totalQuestions:50,
+    totalMarks:50,
+    time:60,
+    negative:0
+},
+
+"Army Tradesman": {
+    subjects: [
+        {name:"General Knowledge", questions:25},
+        {name:"General Science", questions:25}
+    ],
+    totalQuestions:50,
+    totalMarks:50,
+    time:60,
+    negative:0
+},
+
+"Air Force X": {
+    subjects: [
+        {name:"English", questions:20},
+        {name:"Physics", questions:25},
+        {name:"Mathematics", questions:25}
+    ],
+    totalQuestions:70,
+    totalMarks:70,
+    time:60,
+    negative:0.25
+},
+
+"Air Force Y": {
+    subjects: [
+        {name:"English", questions:20},
+        {name:"Reasoning", questions:30},
+        {name:"General Awareness", questions:30}
+    ],
+    totalQuestions:80,
+    totalMarks:80,
+    time:45,
+    negative:0.25
+},
+
+"Navy SSR": {
+    subjects: [
+        {name:"English", questions:25},
+        {name:"Science", questions:25},
+        {name:"Mathematics", questions:25},
+        {name:"General Awareness", questions:25}
+    ],
+    totalQuestions:100,
+    totalMarks:100,
+    time:60,
+    negative:0.25
+},
+
+"Navy MR": {
+    subjects: [
+        {name:"Science", questions:25},
+        {name:"Mathematics", questions:25},
+        {name:"General Awareness", questions:25}
+    ],
+    totalQuestions:75,
+    totalMarks:75,
+    time:30,
+    negative:0.25
+}
+
+};
 function openCategory(exam){
     showPage("categoryPage");
     document.getElementById("categoryTitle").innerText = exam;
@@ -559,27 +1166,86 @@ function openMockList(paper){
     document.getElementById("categoryList").innerHTML = html;
 }
 
-function openMock(paper, mock){
+function openMock(paper,mock){
 
-    if (!questionBank[paper] ||
-        !questionBank[paper][mock] ||
-        questionBank[paper][mock].length === 0) {
+if(!questionBank[paper] ||
+!questionBank[paper][mock] ||
+questionBank[paper][mock].length==0){
 
-        alert("No questions available in this mock.");
-        return;
-    }
+alert("No Questions Available");
+return;
+}
 
-    curPaper = paper;
-    curMock = mock;
+curPaper=paper;
+curMock=mock;
+
+let exam=examPattern[paper];
+
+document.getElementById("popupTitle").innerHTML=
+paper+"<br>"+mock;
+
+document.getElementById("popupQuestions").innerText=
+exam.totalQuestions;
+
+document.getElementById("popupTime").innerText=
+exam.time;
+
+document.getElementById("popupMarks").innerText=
+exam.totalQuestions;
+
+document.getElementById("startPopup").style.display="flex";
+
+}
+function sortQuestionsByPattern(paper, mock){
+
+    if(!questionBank[paper] || !questionBank[paper][mock]) return;
+
+    const pattern = examPattern[paper].subjects;
+
+    let sorted = [];
+
+    pattern.forEach(sub => {
+
+        let list = questionBank[paper][mock].filter(q => q.subject === sub.name);
+
+        sorted = sorted.concat(list);
+
+    });
+
+    questionBank[paper][mock] = sorted;
+
+}
+function startRealTest() {
+    
+
+    document.getElementById("startPopup").style.display = "none";
+
     current = 0;
-    answers = new Array(questionBank[paper][mock].length).fill(-1);
+
+    answers = new Array(questionBank[curPaper][curMock].length).fill(-1);
 
     showPage("mockPage");
-    document.getElementById("testTitle").innerText = `${paper} - ${mock}`;
-    document.getElementById("timer").innerText = "30:00";
 
+    document.getElementById("testTitle").innerText =
+        curPaper + " - " + curMock;
+        loadSubjects();
+        updateSubject();
+
+    timeLeft = examPattern[curPaper].time * 60;
+
+    // Subject Tabs Load
+    loadSubjects();
+
+    // Question Load
     loadQuestion();
+
+    // Active Subject Highlight
+    updateSubject();
+
+    // Palette Load
     loadPalette();
+
+    // Timer Start
     startTimer();
 }
 // ==================== TEST FUNCTIONS ====================
@@ -637,33 +1303,28 @@ function saveAnswer() {
 }
 
 function next() {
-   saveAnswer();
-saveProgress();
 
-    const total = questionBank?.[curPaper]?.[curMock]?.length || 0;
+    saveAnswer();
+    saveProgress();
 
-    if (current < total - 1) {
+    if (current < questionBank[curPaper][curMock].length - 1) {
         current++;
         loadQuestion();
-
-        if (typeof loadPalette === "function") {
-            loadPalette();
-        }
+        updateSubject();
+        loadPalette();
     }
 }
 
 function prev() {
 
     saveAnswer();
-saveProgress();
+    saveProgress();
 
     if (current > 0) {
         current--;
         loadQuestion();
-
-        if (typeof loadPalette === "function") {
-            loadPalette();
-        }
+        updateSubject();
+        loadPalette();
     }
 }
 
@@ -671,9 +1332,8 @@ function startTimer() {
 
     clearInterval(timer);
 
-    timeLeft = 1800;
-
-    document.getElementById("timer").innerText = "30:00";
+    document.getElementById("timer").innerText =
+`${Math.floor(timeLeft/60).toString().padStart(2,"0")}:${(timeLeft%60).toString().padStart(2,"0")}`;
 
     timer = setInterval(() => {
 
@@ -704,20 +1364,30 @@ function submitTest(){
     clearInterval(timer);
 
     let q = questionBank[curPaper]?.[curMock] || [];
-    let score = 0, wrong = 0, unattempted = 0;
+    let correct = 0;
+let wrong = 0;
+let unattempted = 0;
+let marksLost = 0;
     let reviewHTML = "";
 
     for(let i = 0; i < q.length; i++){
 
-        if(answers[i] === undefined || answers[i] === -1){
-            unattempted++;
-        }
-        else if(answers[i] === q[i].c){
-            score++;
-        }
-        else{
-            wrong++;
-        }
+        if (answers[i] === undefined || answers[i] === -1) {
+
+    unattempted++;
+
+}
+else if (answers[i] === q[i].c) {
+
+    correct++;
+
+}
+else {
+
+    wrong++;
+    marksLost += examPattern[curPaper].negative;
+
+}
 
         reviewHTML += `
         <div class="card" style="text-align:left;border-left:5px solid ${answers[i] === q[i].c ? 'green' : 'red'}">
@@ -729,15 +1399,27 @@ function submitTest(){
 
     showPage("resultPage");
 
-    let percent = q.length ? ((score / q.length) * 100).toFixed(2) : 0;
+    const finalScore = correct - marksLost;
+
+const percent = examPattern[curPaper].totalMarks
+    ? ((finalScore / examPattern[curPaper].totalMarks) * 100).toFixed(2)
+    : 0;
 
     document.getElementById("resultBox").innerHTML = `
         <h2 style="text-align:center;color:#1565c0;">🏆 Result</h2>
 
         <div class="container">
             <div class="card"><h3>Total</h3><h2>${q.length}</h2></div>
-            <div class="card"><h3>Correct</h3><h2 style="color:green">${score}</h2></div>
-            <div class="card"><h3>Wrong</h3><h2 style="color:red">${wrong}</h2></div>
+            <div class="card"><h3>Correct</h3><h2 style="color:green">${correct}</h2></div>
+            <div class="card"><h3>Wrong</h3><h2 style="color:red">${wrong}</h2>  <div class="card">
+    <h3>Negative</h3>
+    <h2 style="color:#ff5722;">-${marksLost}</h2>
+</div>
+
+<div class="card">
+    <h3>Final Score</h3>
+    <h2 style="color:#1565c0;">${finalScore}</h2>
+</div></div>
             <div class="card"><h3>Unattempted</h3><h2 style="color:orange">${unattempted}</h2></div>
         </div>
 
@@ -752,11 +1434,6 @@ function submitTest(){
         <h2 style="margin-top:20px;">Answer Review</h2>
 
         ${reviewHTML}
-
-        <div style="text-align:center;margin-top:20px;">
-            <button class="primary" onclick="openMock(curPaper,curMock)">🔄 Restart Test</button>
-            <button class="back" onclick="goHome()">🏠 Home</button>
-        </div>
     `;
 }
 
@@ -769,10 +1446,16 @@ function showAdmin() {
 // ⚡ FAST + SMOOTH ADMIN LOGIN (NO LAG)
 function loginAdmin() {
     const input = document.getElementById("adminPass");
+    if (!input) {
+        alert("Admin input not found!");
+        return;
+    }
+
     const pass = input.value.trim();
 
-    if (!pass) {
+    if (pass.length === 0) {
         input.focus();
+        showToast("Password enter karo ❌");
         return;
     }
 
@@ -786,14 +1469,21 @@ function loginAdmin() {
         showToast("Wrong Password ❌");
     }
 }
+function showAdmin() {
+    showPage("adminPage");
 
+    setTimeout(() => {
+        document.getElementById("adminPass")?.focus();
+    }, 100);
+}
 // ==================== ADD SINGLE QUESTION ====================
 
 function addQ() {
 
     const p = document.getElementById("paper").value;
     const m = document.getElementById("mockNo").value.trim() || "Mock 1";
-
+    const subject = document.getElementById("subject").value;
+ 
     const qText = document.getElementById("q").value.trim();
     const o1 = document.getElementById("o1").value.trim();
     const o2 = document.getElementById("o2").value.trim();
@@ -815,10 +1505,11 @@ function addQ() {
     if (!questionBank[p][m]) questionBank[p][m] = [];
 
     questionBank[p][m].push({
-        q: qText,
-        a: [o1, o2, o3, o4],
-        c: ans
-    });
+    subject: subject,
+    q: qText,
+    a: [o1,o2,o3,o4],
+    c: ans
+});
 
     saveDB();
 
@@ -860,16 +1551,20 @@ function bulkAdd() {
 
         if (!Number.isInteger(ans) || ans < 0 || ans > 3) return;
 
-        questionBank[p][m].push({
-            q: parts[0].trim(),
-            a: [
-                parts[1].trim(),
-                parts[2].trim(),
-                parts[3].trim(),
-                parts[4].trim()
-            ],
-            c: ans
-        });
+        const subject = document.getElementById("subject").value;
+
+questionBank[p][m].push({
+    subject: subject,
+    q: parts[0].trim(),
+    a: [
+        parts[1].trim(),
+        parts[2].trim(),
+        parts[3].trim(),
+        parts[4].trim()
+    ],
+    c: ans
+});
+            
 
         added++;
     });
@@ -1037,12 +1732,17 @@ function showSignup() {
 window.onload = function () {
 
     loadDB();
+    loadSubjectList();
 
     try {
 
         if (localStorage.getItem("loggedIn") === "true") {
 
             const user = JSON.parse(localStorage.getItem("currentUser"));
+            document.getElementById("delPaper").innerHTML =
+    document.getElementById("paper").innerHTML;
+
+loadDeleteMocks();
 
             if (user) {
                 document.getElementById("userNameText").innerText = user.name;
@@ -1060,22 +1760,7 @@ window.onload = function () {
 }; 
 
 </script>
-<div class="footer">
-
-    <button onclick="shareApp()">🔗 Share</button>
-    <button onclick="openWhatsApp()">💬 Help</button>
-    <button onclick="openFeedback()">⭐ Feedback</button>
-
-    <div id="ratingBox" style="margin-top:5px;display:none;">
-        <span class="star" onclick="setRating(1)">★</span>
-        <span class="star" onclick="setRating(2)">★</span>
-        <span class="star" onclick="setRating(3)">★</span>
-        <span class="star" onclick="setRating(4)">★</span>
-        <span class="star" onclick="setRating(5)">★</span>
-        <button onclick="sendFeedback()" style="background:green;color:#fff;">Send</button>
-    </div>
 
 </div>
 </body>
-
 </html>
