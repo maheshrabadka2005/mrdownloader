@@ -1,1 +1,2682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Defence Mock Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
+.testHeader{
+    padding:8px 15px;
+}
+
+.testName{
+    margin-left:10px;
+    margin-top:0;
+    font-size:16px;
+}
+
+.testTimer{
+    font-size:20px;
+    margin-left:5px;
+}
+input, textarea {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #0d47a1;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    z-index: 999;
+}
+
+.footer button {
+    margin: 3px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.star {
+    font-size: 20px;
+    cursor: pointer;
+    color: #ccc;
+}
+
+.star.active {
+    color: gold;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #0d47a1;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    z-index: 999;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins;
+}
+body{
+      background:#eef2f7;
+    padding-bottom:80px;
+} /* Fixed Bottom Buttons के लिए */
+
+.page{
+    display:none;
+    min-height:100vh;
+    padding:0;
+}
+.active{
+    display:block;
+}
+header{
+    background:linear-gradient(90deg,#0d47a1,#1976d2);
+    color:#fff;
+    padding:18px;
+    text-align:center;
+    position:relative;
+}
+button{
+    padding:12px 18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    margin:8px;
+}
+.primary{
+    width:100%;
+    background:#111;
+    color:#fff;
+    border-radius:12px;
+    padding:14px;
+    font-size:16px;
+}
+.danger{background:red;color:#fff;}
+.back{background:#444;color:#fff;}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+    padding-top:20px;
+}
+.card{
+    background:#fff;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    text-align:center;
+}
+.box{
+    width:100%;
+    max-width:100%;
+    margin:0;
+    background:#fff;
+    padding:15px;
+    border-radius:0;
+}
+input,select,textarea{
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border:1px solid #ddd;
+    border-radius:12px;
+    background:#f8f8f8;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#1565c0;
+    background:#fff;
+}
+label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:10px 0;
+    cursor:pointer;
+    padding:8px 10px;
+    border-radius:8px;
+}
+label:hover{background:#f1f5ff;}
+input[type="radio"]{
+    transform:scale(1.2);
+    cursor:pointer;
+}
+.bottomBar{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    display:flex;
+    gap:8px;
+    padding:10px;
+    background:#fff;
+    box-shadow:0 -2px 8px rgba(0,0,0,.15);
+    z-index:999;
+}
+
+.submitBtn{
+    flex:1;
+    background:#ff3b5c;
+    color:#fff;
+}
+
+.markBtn{
+    flex:1;
+    background:#fff;
+    color:#000;
+    border:2px solid #000;
+}
+
+.saveBtn{
+    flex:1;
+    background:#2196f3;
+    color:#fff;
+}
+.optionBox{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:15px;
+    margin:12px 0;
+    border:1px solid #ddd;
+    border-radius:12px;
+    background:#fff;
+    cursor:pointer;
+}
+
+.optionBox:hover{
+    border-color:#1565c0;
+}
+
+.optionBox input[type="radio"]{
+    width:20px;
+    height:20px;
+}
+#question{
+    font-size:20px;
+    font-weight:600;
+    line-height:1.5;
+}
+/* Splash Screen */
+
+#splashScreen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+   background:linear-gradient(135deg,#ffffff,#f5f5f5,#e0e0e0);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+}
+
+.splashContent{
+    text-align:center;
+    color:#1565c0;
+    animation:fadeIn 1s;
+    transform:translateY(-35px);
+
+}
+
+.logoCircle{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    overflow:hidden;
+    background:#fff;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 0 25px rgba(255,255,255,.5);
+    animation:zoomLogo .8s;
+}
+
+.logoCircle img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.splashContent h2{
+    margin-top:20px;
+    font-size:22px;
+    font-weight:700;
+    color:#1a237e;
+}
+
+.splashContent p{
+    margin-top:12px;
+    font-size:15px;
+    opacity:.9;
+    animation:slideUp 1s;
+}
+
+@keyframes zoomLogo{
+    from{
+        transform:scale(.3);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@keyframes slideUp{
+    from{
+        transform:translateY(20px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+.confetti{
+position:fixed;
+width:10px;
+height:10px;
+top:-10px;
+z-index:99999;
+animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(720deg);
+opacity:0;
+}
+}
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+}
+/* ===== NEW MOCK TEST UI ===== */
+
+.testHeader{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#0b3d91;
+color:#fff;
+padding:12px 16px;
+}
+
+
+.headerLeft{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.testTimer{
+font-size:20px;
+font-weight:bold;
+}
+
+.testName{
+font-size:15px;
+margin-top:5px;
+}
+
+.menuBtn{
+background:none;
+border:none;
+color:#fff;
+font-size:24px;
+cursor:pointer;
+}
+
+.subjectTabs{
+    display:flex;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+    background:#fff;
+    border-bottom:1px solid #ddd;
+}
+
+.subjectTabs::-webkit-scrollbar{
+    display:none;
+}
+
+.questionTopBar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 15px;
+background:#fff;
+}
+
+.questionNumber{
+font-weight:bold;
+font-size:18px;
+}
+
+.questionMarks{
+display:flex;
+gap:10px;
+font-size:14px;
+color:#0b3d91;
+}
+
+.questionActions{
+display:flex;
+gap:15px;
+font-size:14px;
+}
+
+.questionCard{
+    background:#fff;
+    margin:0;
+    padding:20px 15px;
+    border-radius:0;
+    box-shadow:none;
+}
+
+.questionBox{
+font-size:18px;
+font-weight:600;
+margin-bottom:20px;
+}
+
+.optionBox{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:18px;
+    margin:15px;
+    border:1px solid #e5e5e5;
+    border-radius:14px;
+    background:#fff;
+}
+
+.optionBox:hover{
+border-color:#1565c0;
+}
+
+.paletteDrawer{
+position:fixed;
+right:-260px;
+top:0;
+width:260px;
+height:100%;
+background:#fff;
+transition:.3s;
+overflow:auto;
+padding:15px;
+box-shadow:-2px 0 10px rgba(0,0,0,.2);
+z-index:9999;
+}
+
+.bottomBar{
+position:fixed;
+left:0;
+bottom:0;
+width:100%;
+display:flex;
+background:#fff;
+padding:10px;
+gap:10px;
+box-shadow:0 -2px 10px rgba(0,0,0,.15);
+}
+
+.submitBtn{
+flex:1;
+background:#ff3b6b;
+color:#fff;
+}
+
+.markBtn{
+flex:1;
+background:#fff;
+border:2px solid #000;
+}
+
+.saveBtn{
+flex:1;
+background:#1976d2;
+color:#fff;
+}
+#loadingText{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:600;
+    color:#1565c0;
+}
+
+#dots{
+    display:inline-block;
+    width:25px;
+    text-align:left;
+}
+</style>
+</head>
+<body>
+    <!-- Splash Screen -->
+<div id="splashScreen">
+
+    <div class="splashContent">
+        <h3 style="
+font-size:20px;
+margin-bottom:18px;
+letter-spacing:2px;
+color:#555;
+""
+🙏WELCOME🪖
+</h3>
+<div class="logoCircle">
+            <img src="logo.png" alt="Logo">
+        </div>
+
+        <h2>Dream • Prepare • Achieve
+        🇮🇳       </h2>
+<div id="loadingText">
+Please Wait<span id="dots">...</span>
+</div>
+        
+
+    </div>
+    <div style="
+position:absolute;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+text-align:center;
+color:#555;
+font-size:13px;
+">
+
+Made with ❤️ By MR 🇮🇳<br>
+© 2026 Defence Mock Test. All Rights Reserved.
+
+</div>
+
+</div>
+   
+
+<!-- ==================== LOGIN / SIGNUP PAGE ==================== -->
+<div id="loginPage" class="page active">
+    <div style="max-width:430px;margin:35px auto;background:#fff;padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.15);">
+
+        <div style="text-align:center;margin-bottom:25px;">
+
+<img src="logo.png"
+style="
+width:120px;
+height:140px;object-fit:cover;
+clip-path:polygon(
+50% 0%,
+100% 20%,
+90% 75%,
+50% 100%,
+10% 75%,
+0% 20%
+);
+display:block;
+margin:auto;
+">
+
+    <h2 style="margin-top:15px;color:#1565c0;">
+        Welcome
+    </h2>
+
+    <p style="color:#777;">
+        Defence Mock Test
+    </p>
+
+</div>
+        <!-- TAB BUTTONS -->
+        <div style="display:flex;margin-top:25px;gap:10px;">
+            <button id="loginTab" class="primary" style="flex:1;" onclick="showLogin()">Login</button>
+            <button id="signupTab" class="back" style="flex:1;" onclick="showSignup()">Sign Up</button>
+            <div style="text-align:center;margin-top:25px;color:#777;font-size:13px;">
+
+</div>
+        </div>
+
+        <!-- LOGIN BOX -->
+        <div id="loginBox">
+            <input type="tel" id="loginMobile" placeholder="📱 Mobile Number" maxlength="10">
+            <input type="password" id="loginPassword" placeholder="🔒 Password">
+            <button class="primary" style="width:100%" onclick="loginUser()">Login</button>
+            <p style="text-align:right;margin-top:8px;">
+    <a href="#" onclick="forgotPassword()" style="color:#1565c0;text-decoration:none;">
+        Forgot Password?
+    </a>
+</p>
+          
+       
+          
+        </div>
+
+        <!-- SIGNUP BOX -->
+        <div id="signupBox" style="display:none;margin-top:10px;">
+          <p style="text-align:center;margin-top:25px;color:#777;font-size:13px;">
+
+</p>
+            <input type="text" id="signupName" placeholder="👤 Full Name">
+            <input type="tel" id="signupMobile" placeholder="📱 Mobile Number" maxlength="10">
+            <input type="password" id="signupPassword" placeholder="🔒 Password">
+            <input type="password" id="signupConfirm" placeholder="🔒 Confirm Password">
+            <button class="primary" style="width:100%" onclick="signupUser()">Create Account</button>
+        </div>
+
+        <p style="text-align:center;margin-top:20px;color:#888;">
+    🇮🇳 Army • Air Force • Navy
+</p>
+    </div>
+</div>
+
+<!-- ==================== HOME PAGE ==================== -->
+<div id="homePage" class="page">
+    <header style="
+background:linear-gradient(135deg,#050505,#111827,#1565c0);
+padding:14px 18px;
+border-radius:0 0 18px 18px;
+box-shadow:0 6px 18px rgba(0,0,0,.25);
+position:relative;
+overflow:hidden;
+">
+
+<div style="display:flex;justify-content:space-between;align-items:center;">
+
+<div style="display:flex;align-items:center;gap:10px;">
+
+<div style="
+width:45px;
+height:45px;
+border-radius:12px;
+background:linear-gradient(135deg,#ffd700,#ff9800);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+box-shadow:0 0 10px rgba(255,215,0,.5);
+">
+🪖
+</div>
+
+<div>
+<div style="color:#bdbdbd;font-size:11px;letter-spacing:1px;">
+❤️ WELCOME ❤️
+</div>
+
+<div style="
+color:#fff;
+font-size:18px;
+font-weight:700;
+">
+<span id="userNameText"></span>
+</div>
+
+</div>
+
+</div>
+
+<div onclick="toggleMenu()" style="
+font-size:30px;
+color:#fff;
+cursor:pointer;
+padding:4px;
+">
+☰
+</div>
+
+</div>
+
+<div style="
+margin-top:12px;
+text-align:center;
+">
+
+<h1 style="
+font-size:22px;
+font-weight:800;
+margin:0;
+background:linear-gradient(90deg,#ffffff,#ffd700,#ffffff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+">
+DEFENCE MOCK TEST
+</h1>
+
+<div style="
+margin-top:5px;
+font-size:13px;
+color:#e0e0e0;
+">
+⚔️ Army • ✈️ Air Force • ⚓ Navy
+</div>
+
+</div>
+
+<div id="menuBox" style="
+display:none;
+position:absolute;
+right:15px;
+top:55px;
+background:#fff;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 8px 18px rgba(0,0,0,.3);
+">
+
+<button onclick="logoutUser()" style="
+width:140px;
+padding:12px;
+border:none;
+background:#fff;
+color:#d32f2f;
+font-weight:600;
+cursor:pointer;
+">
+🚪 Logout
+</button>
+
+</div>
+
+</header>
+
+    <div style="
+max-width:450px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:20px;
+">
+      <p style="text-align:center;margin-top:30px;color:#777;font-size:13px;"></p>
+
+        <div class="card">
+            <h2>🪖 Army Mock Test</h2>
+            <button class="primary" onclick="openCategory('Army')">Start</button>
+        </div>
+        <div class="card">
+            <h2>✈️ Air Force Mock Test</h2>
+            <button class="primary" onclick="openCategory('Air Force')">Start</button>
+        </div>
+        <div class="card">
+            <h2>⚓ Navy Mock Test</h2>
+            <button class="primary" onclick="openCategory('Navy')">Start</button>
+        </div>
+        <div class="card" id="buyCourseCard">
+    <h2>📝Buy Testseries</h2>
+    <button class="primary" onclick="openPayment()">
+        Buy Now
+    </button>
+</div>
+       <div class="card" id="adminCard">
+    <h2>🔐 Admin Panel</h2>
+    <button class="danger" onclick="showAdmin()">
+        Admin Panel
+    </button>
+</div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== CATEGORY PAGE ==================== -->
+<div id="categoryPage" class="page">
+    <header>
+        <h2 id="categoryTitle"></h2>
+    </header>
+    <div style="text-align:center;">
+        <button class="back" onclick="goHome()">⬅ Home</button>
+    </div>
+    <div id="categoryList" class="container"></div>
+</div>
+<div id="startPopup"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+z-index:9999;
+justify-content:center;
+align-items:center;
+">
+
+<div style="
+background:#fff;
+width:320px;
+padding:20px;
+border-radius:20px;
+text-align:center;
+">
+
+<h2 id="popupTitle"></h2>
+
+<hr>
+
+<p><b>Total Questions :</b>
+<span id="popupQuestions"></span></p>
+
+<p><b>Total Time :</b>
+<span id="popupTime"></span> Minutes</p>
+
+<p><b>Maximum Marks :</b>
+<span id="popupMarks"></span></p>
+
+<button class="primary"
+onclick="startRealTest()">
+Start Test
+</button>
+
+</div>
+
+</div>
+
+<!-- ==================== MOCK TEST PAGE ==================== -->
+<div id="mockPage" class="page">
+
+<header class="testHeader">
+
+<div class="headerLeft">
+
+<img src="logo.png" style="
+width:42px;
+height:42px;
+border-radius:50%;
+background:#fff;
+padding:2px;
+">
+
+<div id="timer" class="testTimer">30:00</div>
+
+<div id="testTitle" class="testName"></div>
+
+</div>
+
+<div class="headerRight">
+<button class="menuBtn" onclick="togglePalette()">☰</button>
+</div>
+
+</header>
+
+<div id="subjectTabs" class="subjectTabs"></div>
+
+<div class="questionTopBar">
+
+<div class="questionNumber">
+Q.<span id="qNo">1</span>
+</div>
+
+<div class="questionMarks">
+<span>+1.00</span>
+<span>-0.00</span>
+</div>
+
+<div class="questionActions">
+<span>⚠️</span>
+<span>🔖 SAVE</span>
+</div>
+
+</div>
+
+<div class="questionCard">
+
+<div class="questionBox">
+<div id="question"></div>
+</div>
+
+<label class="optionBox">
+<input type="radio" name="opt" value="0">
+<span id="op1"></span>
+</label>
+
+<label class="optionBox">
+<input type="radio" name="opt" value="1">
+<span id="op2"></span>
+</label>
+
+<label class="optionBox">
+<input type="radio" name="opt" value="2">
+<span id="op3"></span>
+</label>
+
+<label class="optionBox">
+<input type="radio" name="opt" value="3">
+<span id="op4"></span>
+</label>
+
+</div>
+
+<div id="paletteDrawer" class="paletteDrawer">
+
+<h3>Question Palette</h3>
+
+<div id="questionPalette"></div>
+
+</div>
+
+<div class="bottomBar">
+
+<button class="submitBtn" onclick="submitTest()">
+Submit Quiz
+</button>
+
+<button class="markBtn" onclick="markNext()">
+Mark & Next
+</button>
+
+<button class="saveBtn" onclick="next()">
+Save & Next
+</button>
+
+</div>
+
+</div>
+<!-- ==================== RESULT PAGE ==================== -->
+<div id="resultPage" class="page">
+    <div id="resultBox" class="box"></div>
+</div>
+  
+
+<!-- ==================== ADMIN PAGE ==================== -->
+<div id="adminPage" class="page">
+    <header>
+        <h2>🔐 Admin Panel</h2>
+    </header>
+    <div class="box" style="max-width:700px;">
+        <h3>Admin Login</h3>
+        <input 
+    type="password" 
+    id="adminPass" 
+    placeholder="Enter Admin Password"
+    autocomplete="off"
+    autocapitalize="off"
+    style="user-select:text; -webkit-user-select:text;"
+>
+        <button class="primary" style="width:100%;" onclick="loginAdmin()">Login as Admin</button>
+    </div>
+</div>
+
+<!-- ==================== ADMIN DASHBOARD ==================== -->
+<div id="adminDash" class="page">
+    <header>
+        <h2>Admin Dashboard</h2>
+        <div id="totalUsersBox"
+style="
+background:#1565c0;
+color:white;
+padding:15px;
+border-radius:10px;
+margin:15px;
+text-align:center;
+font-size:20px;
+font-weight:bold;">
+            <hr>
+
+<h3>👥 Registered Users</h3>
+
+<div id="usersList"></div>
+👥 Total Accounts : <span id="totalUsers">0</span>
+</div>
+        <button class="back" onclick="goHome()" style="position:absolute;right:20px;top:20px;">Home</button>
+    </header>
+
+    <div class="box">
+
+        <!-- ================= ADD QUESTION ================= -->
+        <hr>
+
+<h3>🔓 Unlock User Course</h3>
+
+<input 
+type="tel" 
+id="unlockMobile" 
+placeholder="User Mobile Number"
+maxlength="10">
+
+<button class="primary" onclick="testUnlock()">
+🪖 Unlock Army
+</button>
+
+<button class="primary" onclick="unlockCourse('Air Force')">
+✈️ Unlock Air Force
+</button>
+
+<button class="primary" onclick="unlockCourse('Navy')">
+⚓ Unlock Navy
+</button>
+
+<button style="background:#2e7d32;color:#fff;"
+onclick="unlockCourse('Combo')">
+🔥 Unlock Combo
+</button>
+
+<hr>
+
+<button class="danger" onclick="lockCourse('Army')">
+🔒 Lock Army
+</button>
+
+<button class="danger" onclick="lockCourse('Air Force')">
+🔒 Lock Air Force
+</button>
+
+<button class="danger" onclick="lockCourse('Navy')">
+🔒 Lock Navy
+</button>
+
+<button class="danger" onclick="lockCourse('Combo')">
+🔒 Lock Combo
+</button>
+        <h3>Add Question</h3>
+
+        <select id="paper" onchange="loadSubjectList()">
+            <option value="Army GD">Army GD</option>
+            <option value="Army Clerk">Army Clerk</option>
+            <option value="Army Technical">Army Technical</option>
+            <option value="Army Nursing">Army Nursing</option>
+            <option value="Army Tradesman">Army Tradesman</option>
+            <option value="Air Force X">Air Force X</option>
+            <option value="Air Force Y">Air Force Y</option>
+            <option value="Navy MR">Navy MR</option>
+            <option value="Navy SSR">Navy SSR</option>
+            <option value="Air Force XY">Air Force XY</option>
+<option value="Air Force Medical Assistant">Air Force Medical Assistant</option>
+<option value="Navy SSR Medical Assistant">Navy SSR Medical Assistant</option>
+        </select>
+
+        <input type="text" id="mockNo" placeholder="Mock Number (e.g. Mock 1)" value="Mock 1">
+        <select id="subject"></select>
+
+        <textarea id="q" rows="3" placeholder="Question"></textarea>
+        <input type="text" id="o1" placeholder="Option 1">
+        <input type="text" id="o2" placeholder="Option 2">
+        <input type="text" id="o3" placeholder="Option 3">
+        <input type="text" id="o4" placeholder="Option 4">
+        <input type="number" id="ans" placeholder="Correct Option (0-3)" min="0" max="3">
+
+        <button class="primary" onclick="addQ()">Add Single Question</button>
+
+        <hr>
+
+        <!-- ================= BULK ADD ================= -->
+        <h3>Bulk Add (Format: Question|Opt1|Opt2|Opt3|Opt4|CorrectIndex)</h3>
+        <textarea id="bulkData" rows="6" placeholder="Paste bulk questions here..."></textarea>
+        <button class="primary" onclick="bulkAdd()">Add Bulk Questions</button>
+
+        <hr>
+
+        <!-- ================= DELETE QUESTION ================= -->
+        <h3>Delete Question</h3>
+
+        <select id="delPaper" onchange="loadDeleteMocks()">
+            <option value="Army GD">Army GD</option>
+            <option value="Army Clerk">Army Clerk</option>
+            <option value="Army Technical">Army Technical</option>
+            <option value="Army Nursing">Army Nursing</option>
+            <option value="Army Tradesman">Army Tradesman</option>
+            <option value="Air Force X">Air Force X</option>
+            <option value="Air Force Y">Air Force Y</option>
+            <option value="Navy MR">Navy MR</option>
+            <option value="Navy SSR">Navy SSR</option>
+            <option value="Air Force XY">Air Force XY</option>
+<option value="Air Force Medical Assistant">Air Force Medical Assistant</option>
+<option value="Navy SSR Medical Assistant">Navy SSR Medical Assistant</option>
+        </select>
+        
+        <select id="delMock"></select>
+
+        <input type="number" id="delIndex" placeholder="Question No (1,2,3...)">
+
+        <button class="danger" onclick="deleteQuestion()">Delete Question</button>
+
+        <hr>
+
+        <!-- ================= BULK DELETE (NEW FEATURE) ================= -->
+        <h3>Bulk Delete Questions</h3>
+        <p style="font-size:13px; color:#555; margin-bottom:5px;">Enter question numbers separated by commas (e.g. 1,3,5-8)</p>
+        <input type="text" id="bulkDeleteRange" placeholder="e.g. 1,3,5-8" style="margin-top:0;">
+        <button class="danger" onclick="bulkDeleteQuestions()">Delete Selected Questions</button>
+
+        <hr>
+
+        <h3>Clear Full Mock Test</h3>
+
+        <select id="clearPaper" onchange="loadClearMocks()">
+            <option value="Army GD">Army GD</option>
+            <option value="Army Clerk">Army Clerk</option>
+            <option value="Army Technical">Army Technical</option>
+            <option value="Army Nursing">Army Nursing</option>
+            <option value="Army Tradesman">Army Tradesman</option>
+            <option value="Air Force X">Air Force X</option>
+            <option value="Air Force Y">Air Force Y</option>
+            <option value="Navy MR">Navy MR</option>
+            <option value="Navy SSR">Navy SSR</option>
+            <option value="Air Force XY">Air Force XY</option>
+<option value="Air Force Medical Assistant">Air Force Medical Assistant</option>
+<option value="Navy SSR Medical Assistant">Navy SSR Medical Assistant</option>
+        </select>
+
+        <select id="clearMock"></select>
+
+        <button class="danger" onclick="clearMockTest()">
+            Clear Full Mock
+        </button>
+
+    </div>
+</div>
+
+<script>
+function testUnlock(){
+    alert("Unlock button chal raha hai");
+}
+let dotCount = 0;
+
+setInterval(()=>{
+
+    dotCount++;
+
+    if(dotCount > 3){
+        dotCount = 1;
+    }
+
+    document.getElementById("dots").innerText =
+    ".".repeat(dotCount);
+
+},500);
+async function unlockCourse(course){
+
+    let mobile = document.getElementById("unlockMobile").value.trim();
+
+    if(!mobile){
+        alert("Mobile number dalo");
+        return;
+    }
+
+    let snapshot = await get(ref(db,"users"));
+
+    let users = snapshot.val();
+
+    for(let uid in users){
+
+        if(users[uid].mobile == mobile){
+
+            await set(
+                ref(db,"users/"+uid+"/coursePurchased/"+course),
+                true
+            );
+
+            alert(course + " Unlock Success ✅");
+            return;
+        }
+
+    }
+
+    alert("User nahi mila ❌");
+}
+async function lockCourse(course){
+
+    let mobile = document.getElementById("unlockMobile").value.trim();
+
+    if(!mobile){
+        alert("Mobile number dalo");
+        return;
+    }
+
+    let snapshot = await get(ref(db,"users"));
+
+    let users = snapshot.val();
+
+    for(let uid in users){
+
+        if(users[uid].mobile == mobile){
+
+            await set(
+                ref(db,"users/"+uid+"/coursePurchased/"+course),
+                false
+            );
+
+            alert(course + " Locked Successfully 🔒");
+            return;
+
+        }
+
+    }
+
+    alert("User nahi mila ❌");
+}
+// ==================== GLOBAL VARIABLES ====================
+let questionBank = {};
+let curPaper = "", curMock = "", current = 0, answers = [], timer, timeLeft = 1800;
+let correct = 0;
+let wrong = 0;
+let unattempted = 0;
+let finalScore = 0;
+let percent = 0;
+let marksLost = 0;
+const ADMIN_MOBILE = "8000471461";
+
+// ==================== DATABASE FUNCTIONS ====================
+
+async function loadDB() {
+
+    try {
+
+        const snapshot = await get(ref(db, "questionBank"));
+
+        if (snapshot.exists()) {
+
+            questionBank = snapshot.val();
+
+        } else {
+
+            questionBank = {};
+
+        }
+
+    } catch (e) {
+
+        questionBank = {};
+
+    }
+
+    const papers = [
+        "Army GD","Army Clerk","Army Technical","Army Nursing","Army Tradesman",
+        "Air Force X",
+"Air Force Y",
+"Air Force XY",
+"Air Force Medical Assistant",
+"Navy MR",
+"Navy SSR",
+"Navy SSR Medical Assistant"
+    ];
+
+    papers.forEach(p => {
+        if (!questionBank[p]) questionBank[p] = {};
+    });
+
+}
+async function saveDB() {
+    try {
+
+        await set(ref(db, "questionBank"), questionBank);
+
+        showToast("Database Saved ✅");
+
+    } catch (e) {
+
+        showToast("Firebase Save Error ❌");
+
+    }
+}
+
+// ==================== TOAST ====================
+function showToast(msg) {
+    let t = document.createElement("div");
+    t.innerText = msg;
+    t.style = `
+        position:fixed;
+        bottom:80px;
+        left:50%;
+        transform:translateX(-50%);
+        background:rgba(0,0,0,0.85);
+        color:#fff;
+        padding:10px 16px;
+        border-radius:8px;
+        z-index:9999;
+        font-size:14px;
+        max-width:90%;
+        text-align:center;
+    `;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2000);
+}
+
+// ==================== PAGE SYSTEM ====================
+function showPage(id) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+function goHome() {
+
+    clearInterval(timer);
+
+    current = 0;
+    answers = [];
+
+    document.getElementById("startPopup").style.display = "none";
+
+    showPage("homePage");
+
+}
+function showConfetti(){
+
+const colors=[
+"#ff1744",
+"#2979ff",
+"#00c853",
+"#ffd600",
+"#ff9100",
+"#d500f9"
+];
+
+for(let i=0;i<120;i++){
+
+let c=document.createElement("div");
+
+c.className="confetti";
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.background=
+colors[Math.floor(Math.random()*colors.length)];
+
+c.style.animationDelay=(Math.random()*2)+"s";
+
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),5000);
+
+}
+
+}
+function toggleSolution(){
+
+const box = document.getElementById("solutionBox");
+
+if(box.style.display=="none"){
+
+box.style.display="block";
+
+}else{
+
+box.style.display="none";
+
+}
+function shareResult(){
+
+let text =
+`🏆 Defence Mock Test Result
+
+📚 Exam : ${curPaper}
+📝 Mock : ${curMock}
+
+✅ Correct : ${correct}
+❌ Wrong : ${wrong}
+⚪ Unattempted : ${unattempted}
+
+🎯 Score : ${finalScore}
+📊 Percentage : ${percent}%
+
+🇮🇳 Defence Mock Test`;
+
+if(navigator.share){
+
+navigator.share({
+title:"My Result",
+text:text
+});
+
+}else{
+
+navigator.clipboard.writeText(text);
+
+alert("Result Copied Successfully ✅");
+
+}
+
+}
+
+}
+
+// ==================== CATEGORY MAP & EXAM PATTERN ====================
+const map = {
+    "Army": ["Army GD","Army Clerk","Army Technical","Army Nursing","Army Tradesman"],
+    "Air Force": [
+    "Air Force X",
+    "Air Force Y",
+    "Air Force XY",
+    "Air Force Medical Assistant"
+],
+
+"Navy": [
+    "Navy MR",
+    "Navy SSR",
+    "Navy SSR Medical Assistant"
+]
+};
+
+const examPattern = {
+    "Army GD": {
+        subjects: [
+            { name: "General Knowledge", questions: 15 },
+            { name: "General Science", questions: 15 },
+            { name: "Mathematics", questions: 15 },
+            { name: "Reasoning", questions: 5 }
+        ],
+        totalQuestions: 50,
+        totalMarks: 100,
+        time: 60,
+        negative: 0
+    },
+    "Army Nursing": {
+    subjects: [
+        { name: "Biology", questions: 15 },
+        { name: "Chemistry", questions: 15 },
+        { name: "General Knowledge", questions: 10 },
+        { name: "Physics", questions: 5 },
+        { name: "Mathematics", questions: 5 }
+    ],
+    totalQuestions: 50,
+    totalMarks: 200,
+    time: 60,
+    negative: 0
+},
+
+    "Army Clerk": {
+        subjects: [
+            { name: "General Knowledge", questions: 5 },
+            { name: "General Science", questions: 5 },
+            { name: "Mathematics", questions: 10 },
+            { name: "Computer", questions: 5 },
+            { name: "English", questions: 25 }
+        ],
+        totalQuestions: 50,
+        totalMarks: 200,
+        time: 60,
+        negative: 0
+    },
+
+    "Army Technical": {
+        subjects: [
+            { name: "General Knowledge", questions: 10 },
+            { name: "Mathematics", questions: 15 },
+            { name: "Physics", questions: 15 },
+            { name: "Chemistry", questions: 10 }
+        ],
+        totalQuestions: 50,
+        totalMarks: 200,
+        time: 60,
+        negative: 0
+    },
+
+    "Army Tradesman": {
+        subjects: [
+            { name: "General Knowledge", questions: 15 },
+            { name: "General Science", questions: 15 },
+            { name: "Mathematics", questions: 15 },
+            { name: "Reasoning", questions: 5 }
+        ],
+        totalQuestions: 50,
+        totalMarks: 100,
+        time: 60,
+        negative: 0
+    },
+
+    "Air Force X": {
+        subjects: [
+            { name: "English", questions: 20 },
+            { name: "Physics", questions: 25 },
+            { name: "Mathematics", questions: 25 }
+        ],
+        totalQuestions: 70,
+        totalMarks: 70,
+        time: 60,
+        negative: 0.25
+     
+    },
+
+    "Air Force Y": {
+        subjects: [
+            { name: "English", questions: 20 },
+            { name: "Reasoning & General Awareness", questions: 30 }
+        ],
+        totalQuestions: 50,
+        totalMarks: 50,
+        time: 45,
+        negative: 0.25
+    },
+
+    "Air Force XY": {
+        subjects: [
+            { name: "English", questions: 20 },
+            { name: "Physics", questions: 25 },
+            { name: "Mathematics", questions: 25 },
+            { name: "Reasoning & General Awareness", questions: 30 }
+        ],
+        totalQuestions: 100,
+        totalMarks: 100,
+        time: 85,
+        negative: 0.25
+    },
+
+    "Navy SSR": {
+        subjects: [
+            { name: "English", questions: 25 },
+            { name: "Science", questions: 25 },
+            { name: "Mathematics", questions: 25 },
+            { name: "General Awareness", questions: 25 }
+        ],
+        totalQuestions: 100,
+        totalMarks: 100,
+        time: 60,
+        negative: 0.25
+    },
+
+    "Navy MR": {
+    subjects: [
+        { name: "Science & Mathematics", questions: 25 },
+        { name: "General Awareness", questions: 25 }
+    ],
+    totalQuestions: 50,
+    totalMarks: 50,
+    time: 30,
+    negative: 0.25
+},
+
+"Air Force Medical Assistant": {
+    subjects: [
+        { name:"English", questions:20 },
+        { name:"Physics", questions:25 },
+        { name:"Chemistry", questions:25 },
+        { name:"Biology", questions:10 }
+    ],
+    totalQuestions:80,
+    totalMarks:80,
+    time:60,
+    negative:0.25
+},
+
+"Navy SSR Medical Assistant": {
+    subjects:[
+        { name:"English", questions:25 },
+        { name:"Science", questions:25 },
+        { name:"Mathematics", questions:25 },
+        { name:"Biology", questions:25 },
+        { name:"General Awareness", questions:25 }
+    ],
+    totalQuestions:125,
+    totalMarks:125,
+    time:60,
+    negative:0.25
+    }
+    
+};
+
+// ================= CATEGORY FUNCTIONS ====================
+function openCategory(exam) {
+    showPage("categoryPage");
+    document.getElementById("categoryTitle").innerText = exam;
+    let html = "";
+    map[exam].forEach(test => {
+        html += `
+        <div class="card">
+            <h3>${test}</h3>
+            <button class="primary" onclick="openMockList('${test}')">View Mocks</button>
+        </div>`;
+    });
+    document.getElementById("categoryList").innerHTML = html;
+}
+function forgotPassword() {
+
+    const mobile = document.getElementById("loginMobile").value.trim();
+
+    if (!mobile) {
+        alert("Pehle apna mobile number enter karo.");
+        return;
+    }
+
+    const message =
+        `I forgot my password.\n\nMy Mobile Number: ${mobile}\n\nPlease send my password.`;
+
+    const whatsappNumber = "918000471461"; // Apna WhatsApp Number
+
+    window.open(
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+        "_blank"
+    );
+
+}
+
+function openMockList(paper) {
+    curPaper = paper;
+    showPage("categoryPage");
+
+    document.getElementById("categoryTitle").innerText = paper + " - Select Mock";
+
+    let html = "";
+
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    const isAdmin = user && user.mobile === ADMIN_MOBILE;
+
+    for (let i = 1; i <= 20; i++) {
+
+        let m = "Mock " + i;
+
+        let count = (questionBank[paper] && questionBank[paper][m])
+        ? questionBank[paper][m].length 
+        : 0;
+
+
+        let locked = false;
+
+
+        // Mock 1 हमेशा FREE
+        if(i > 1 && !isAdmin){
+
+            // अगर payment नहीं किया
+            if(!localStorage.getItem("coursePurchased")){
+                locked = true;
+            }
+
+        }
+
+
+        html += `
+        <div class="card">
+
+            <h3>${m}</h3>
+
+            <p>${count} Questions</p>
+
+            ${
+            locked
+            ?
+            `
+            <button class="danger" onclick="openPayment()">
+            🔒 Buy To Unlock
+            </button>
+            `
+            :
+            `
+            <button class="primary" 
+            ${count===0?"disabled":""}
+            onclick="openMock('${paper}','${m}')">
+
+            ${i===1?"FREE Demo":"Start"}
+
+            </button>
+            `
+            }
+
+        </div>
+        `;
+
+    }
+
+
+    document.getElementById("categoryList").innerHTML = html;
+}
+function openMock(paper, mock) {
+    if (!questionBank[paper] || !questionBank[paper][mock] || questionBank[paper][mock].length === 0) {
+        alert("No Questions Available");
+        return;
+    }
+
+    curPaper = paper;
+    curMock = mock;
+
+    let exam = examPattern[paper];
+
+    document.getElementById("popupTitle").innerHTML = paper + "<br>" + mock;
+    document.getElementById("popupQuestions").innerText = exam.totalQuestions;
+    document.getElementById("popupTime").innerText = exam.time;
+    document.getElementById("popupMarks").innerText = exam.totalMarks; // ✅ यही बदलना है
+
+    document.getElementById("startPopup").style.display = "flex";
+}
+
+function startRealTest() {
+
+    clearInterval(timer);
+    answers = [];
+    document.getElementById("startPopup").style.display = "none";
+
+    current = 0;
+    answers = new Array(questionBank[curPaper][curMock].length).fill(-1);
+
+    showPage("mockPage");
+    document.getElementById("testTitle").innerText = curPaper + " - " + curMock;
+
+    // Default Timer
+    timeLeft = examPattern[curPaper].time * 60;
+
+    // Sectional Timer Reset
+    window.section2Started = false;
+    window.section3Started = false;
+
+    // Air Force X & Y English Section
+    if (curPaper === "Air Force X" || curPaper === "Air Force Y") {
+        timeLeft = 20 * 60;
+    }
+
+    loadSubjects();
+    updateSubject();
+    loadQuestion();
+    loadPalette();
+    startTimer();
+}
+// ==================== MOCK TEST FUNCTIONS ====================
+function loadSubjects() {
+    const subjects = examPattern[curPaper].subjects;
+    let html = "";
+
+    let start = 0;
+
+    subjects.forEach((sub, index) => {
+
+        const subjectStart = start;
+        start += sub.questions;
+
+        const clickable = !curPaper.startsWith("Air Force");
+
+        html += `
+        <div
+            ${clickable ? `onclick="jumpToSubject(${subjectStart})"` : ""}
+            style="
+            flex:0 0 auto;
+                padding:15px 20px;
+                font-weight:bold;
+                white-space:nowrap;
+                border-bottom:3px solid ${index===0?"#1565c0":"transparent"};
+                color:${index===0?"#1565c0":"#555"};
+                cursor:${clickable?"pointer":"default"};
+            ">
+            ${sub.name} (${sub.questions})
+        </div>`;
+    });
+
+    document.getElementById("subjectTabs").innerHTML = html;
+}
+function jumpToSubject(startIndex){
+
+    if(curPaper.startsWith("Air Force")) return;
+
+    saveAnswer();
+    current = startIndex;
+    loadQuestion();
+    updateSubject();
+    loadPalette();
+}
+
+function updateSubject() {
+    const subjects = examPattern[curPaper].subjects;
+    let currentSubject = 0;
+    let total = 0;
+
+    for (let i = 0; i < subjects.length; i++) {
+        total += subjects[i].questions;
+        if (current < total) {
+            currentSubject = i;
+            break;
+        }
+    }
+
+    let html = "";
+    let start = 0;
+
+    subjects.forEach((sub, index) => {
+
+        const subjectStart = start;
+        start += sub.questions;
+
+        const clickable = !curPaper.startsWith("Air Force");
+
+        html += `
+        <div
+            ${clickable ? `onclick="jumpToSubject(${subjectStart})"` : ""}
+            style="
+                flex:0 0 auto;
+                padding:15px 20px;
+                font-weight:bold;
+                white-space:nowrap;
+                border-bottom:3px solid ${index===currentSubject?"#1565c0":"transparent"};
+                color:${index===currentSubject?"#1565c0":"#555"};
+                cursor:${clickable?"pointer":"default"};
+            ">
+            ${sub.name} (${sub.questions})
+        </div>`;
+    });
+
+    document.getElementById("subjectTabs").innerHTML = html;
+}
+
+function loadQuestion() {
+    const q = questionBank?.[curPaper]?.[curMock]?.[current];
+    if (!q) {
+        document.getElementById("question").innerText = "No Questions Available";
+        document.getElementById("qNo").innerText = "";
+        document.getElementById("op1").innerText = "";
+        document.getElementById("op2").innerText = "";
+        document.getElementById("op3").innerText = "";
+        document.getElementById("op4").innerText = "";
+        document.querySelectorAll("input[name='opt']").forEach(r => { r.checked = false; r.disabled = true; });
+        return;
+    }
+    document.querySelectorAll("input[name='opt']").forEach(r => { r.disabled = false; r.checked = false; });
+    document.getElementById("qNo").innerText = current + 1;
+    document.getElementById("question").innerText = q.q;
+    document.getElementById("op1").innerText = q.a[0] || "";
+    document.getElementById("op2").innerText = q.a[1] || "";
+    document.getElementById("op3").innerText = q.a[2] || "";
+    document.getElementById("op4").innerText = q.a[3] || "";
+    if (Array.isArray(answers) && answers[current] >= 0 && answers[current] <= 3) {
+        const radios = document.querySelectorAll("input[name='opt']");
+        if (radios[answers[current]]) radios[answers[current]].checked = true;
+    }
+}
+
+function saveAnswer() {
+    if (!Array.isArray(answers)) return;
+    let selected = -1;
+    document.querySelectorAll("input[name='opt']").forEach((r, i) => {
+        if (r.checked) selected = i;
+    });
+    answers[current] = selected;
+}
+
+function next() {
+
+    saveAnswer();
+
+    if (current < questionBank[curPaper][curMock].length - 1) {
+
+        current++;
+
+        // Air Force Y
+        if (curPaper === "Air Force Y") {
+
+            if (current === 20 && !window.section2Started) {
+                window.section2Started = true;
+                clearInterval(timer);
+                timeLeft = 25 * 60;
+                startTimer();
+                alert("English Section Completed.\nReasoning + General Awareness Started (25 Minutes).");
+            }
+
+        }
+
+        // Air Force X
+        if (curPaper === "Air Force X") {
+
+            if (current === 20 && !window.section2Started) {
+                window.section2Started = true;
+                clearInterval(timer);
+                timeLeft = 20 * 60;
+                startTimer();
+                alert("English Section Completed.\nPhysics Started (20 Minutes).");
+            }
+
+            if (current === 45 && !window.section3Started) {
+                window.section3Started = true;
+                clearInterval(timer);
+                timeLeft = 20 * 60;
+                startTimer();
+                alert("Physics Section Completed.\nMathematics Started (20 Minutes).");
+            }
+
+        }
+
+        loadQuestion();
+        updateSubject();
+        loadPalette();
+    }
+}
+function prev() {
+    saveAnswer();
+    if (current > 0) {
+        current--;
+        loadQuestion();
+        updateSubject();
+        loadPalette();
+    }
+}
+function markNext() {
+
+    saveAnswer();
+
+    // Agar mark for review baad me banana ho to yahan code add kar sakte ho
+
+    next();
+
+}
+
+function loadPalette() {
+    let total = questionBank[curPaper]?.[curMock]?.length || 0;
+    let html = "";
+    for (let i = 0; i < total; i++) {
+        html += `
+        <button style="width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;background:${i === current ? "#1565c0" : (answers[i] === -1 ? "#ccc" : "#4CAF50")};color:white;" onclick="jumpQuestion(${i})">
+            ${i + 1}
+        </button>`;
+    }
+    document.getElementById("questionPalette").innerHTML = html;
+}
+
+function jumpQuestion(index) {
+    saveAnswer();
+    current = index;
+    loadQuestion();
+    loadPalette();
+    document.getElementById("paletteDrawer").style.right="-260px";
+}
+
+
+function togglePalette() {
+
+    let d = document.getElementById("paletteDrawer");
+
+    d.style.right = d.style.right == "0px" ? "-260px" : "0px";
+
+}
+
+function startTimer() {
+    clearInterval(timer);
+    document.getElementById("timer").innerText = `${Math.floor(timeLeft/60).toString().padStart(2,"0")}:${(timeLeft%60).toString().padStart(2,"0")}`;
+    timer = setInterval(() => {
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            submitTest();
+            return;
+        }
+        timeLeft--;
+        const m = Math.floor(timeLeft / 60);
+        const s = timeLeft % 60;
+        document.getElementById("timer").innerText = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }, 1000);
+}
+
+// ==================== SUBMIT TEST ====================
+function submitTest() {
+    if (!confirm("Are you sure you want to submit the test?")) return;
+    saveAnswer();
+    clearInterval(timer);
+    let q = questionBank[curPaper]?.[curMock] || [];
+    correct = 0;
+wrong = 0;
+unattempted = 0;
+marksLost = 0;
+    let reviewHTML = "";
+    for (let i = 0; i < q.length; i++) {
+        if (answers[i] === undefined || answers[i] === -1) {
+            unattempted++;
+        } else if (answers[i] === q[i].c) {
+            correct++;
+        } else {
+            wrong++;
+            marksLost += examPattern[curPaper].negative;
+        }
+        reviewHTML += `
+        <div class="card" style="text-align:left;border-left:5px solid ${answers[i] === q[i].c ? 'green' : 'red'}">
+            <b>Q${i+1}:</b> ${q[i].q}<br><br>
+            <b>Your Answer:</b> ${answers[i] === -1 ? "Not Attempted" : q[i].a[answers[i]]}<br>
+            <b>Correct Answer:</b> ${q[i].a[q[i].c]}
+        </div>`;
+    }
+    showPage("resultPage");
+    if(percent>=50){
+
+showConfetti();
+
+}
+    finalScore = correct - marksLost;
+percent = examPattern[curPaper].totalMarks
+? ((finalScore / examPattern[curPaper].totalMarks) * 100).toFixed(2)
+: 0;
+ document.getElementById("resultBox").innerHTML = `
+
+<div style="max-width:900px;margin:auto;background:#fff;border-radius:25px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.15);">
+
+<div style="background:#1565c0;color:#fff;padding:20px;display:flex;align-items:center;justify-content:space-between;">
+
+<div style="display:flex;align-items:center;gap:15px;">
+
+<img src="logo.png" style="width:65px;height:65px;border-radius:50%;background:#fff;padding:5px;">
+
+<div>
+
+<h2 style="margin:0;">Question Stats</h2>
+
+<p style="margin:3px 0 0;font-size:13px;opacity:.9;">
+${curPaper} • ${curMock}
+</p>
+
+</div>
+
+</div>
+
+<div onclick="shareResult()" style="font-size:28px;cursor:pointer;">
+📤
+</div>
+
+</div>
+
+<div style="padding:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:15px;">
+
+<div style="background:#eaf4ff;border-radius:15px;padding:20px;text-align:center;">
+<div style="font-size:40px;">🏆</div>
+<h2>${finalScore}/${examPattern[curPaper].totalMarks}</h2>
+<p>Score</p>
+</div>
+
+<div style="background:#e8f8e8;border-radius:15px;padding:20px;text-align:center;">
+<div style="font-size:40px;">✅</div>
+<h2>${correct}</h2>
+<p>Correct</p>
+</div>
+
+<div style="background:#ffeaea;border-radius:15px;padding:20px;text-align:center;">
+<div style="font-size:40px;">❌</div>
+<h2>${wrong}</h2>
+<p>Incorrect</p>
+</div>
+
+<div style="background:#fff4e5;border-radius:15px;padding:20px;text-align:center;">
+<div style="font-size:40px;">⏳</div>
+<h2>${unattempted}</h2>
+<p>Unattempted</p>
+</div>
+<div style="background:#f3e8ff;border-radius:15px;padding:20px;text-align:center;grid-column:1/3;">
+<div style="font-size:40px;">🎯</div>
+<h2>${correct+wrong==0?0:((correct/(correct+wrong))*100).toFixed(2)}%</h2>
+<p>Accuracy</p>
+</div>
+
+</div>
+
+<div style="padding:20px;">
+
+<button class="primary" onclick="toggleSolution()">
+📖 Show Solution
+</button>
+
+<button class="saveBtn" onclick="shareResult()">
+📤 Share Result
+</button>
+
+<button class="primary" onclick="startRealTest()">
+🔄 Re Attempt
+</button>
+
+<button class="back" onclick="goHome()">
+🏠 Home
+</button>
+
+<div id="solutionBox" style="display:none;margin-top:20px;">
+${reviewHTML}
+</div>
+
+</div>
+
+</div>
+
+`;
+}
+
+// ==================== ADMIN FUNCTIONS ====================
+function showAdmin() {
+    showPage("adminPage");
+    setTimeout(() => document.getElementById("adminPass")?.focus(), 100);
+}
+
+function loginAdmin() {
+    const input = document.getElementById("adminPass");
+    const pass = input.value.trim();
+    if (pass.length === 0) { input.focus(); showToast("Password enter karo ❌"); return; }
+    if (pass === "admin123") {
+        input.value = "";
+        showPage("adminDash");
+        loadTotalUsers();
+        loadUsersList();
+        loadDeleteMocks();
+        loadClearMocks();
+        showToast("Login Successful ✅");
+    } else {
+        input.value = "";
+        input.focus();
+        showToast("Wrong Password ❌");
+    }
+}
+
+function loadSubjectList() {
+    const paper = document.getElementById("paper").value;
+    const subject = document.getElementById("subject");
+    subject.innerHTML = "";
+    examPattern[paper].subjects.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.name;
+        option.textContent = item.name;
+        subject.appendChild(option);
+    });
+}
+
+function loadDeleteMocks() {
+    const paper = document.getElementById("delPaper").value;
+    const mockSelect = document.getElementById("delMock");
+    mockSelect.innerHTML = "";
+    for (let i = 1; i <= 20; i++) {
+        mockSelect.innerHTML += `<option value="Mock ${i}">Mock ${i}</option>`;
+    }
+}
+
+function loadClearMocks() {
+    const mockSelect = document.getElementById("clearMock");
+    mockSelect.innerHTML = "";
+    for (let i = 1; i <= 20; i++) {
+        mockSelect.innerHTML += `<option value="Mock ${i}">Mock ${i}</option>`;
+    }
+}
+
+// ==================== ADD SINGLE QUESTION ====================
+function addQ() {
+    const p = document.getElementById("paper").value;
+    const m = document.getElementById("mockNo").value.trim() || "Mock 1";
+    const subject = document.getElementById("subject").value;
+    const qText = document.getElementById("q").value.trim();
+    const o1 = document.getElementById("o1").value.trim();
+    const o2 = document.getElementById("o2").value.trim();
+    const o3 = document.getElementById("o3").value.trim();
+    const o4 = document.getElementById("o4").value.trim();
+    const ans = Number(document.getElementById("ans").value);
+    if (!qText || !o1 || !o2 || !o3 || !o4) { showToast("Please fill all fields ❌"); return; }
+    if (!Number.isInteger(ans) || ans < 0 || ans > 3) { showToast("Answer must be between 0-3 ❌"); return; }
+    if (!questionBank[p]) questionBank[p] = {};
+    if (!questionBank[p][m]) questionBank[p][m] = [];
+    questionBank[p][m].push({ subject: subject, q: qText, a: [o1, o2, o3, o4], c: ans });
+    saveDB();
+    showToast("Question Added ✅");
+    document.getElementById("q").value = "";
+    document.getElementById("o1").value = "";
+    document.getElementById("o2").value = "";
+    document.getElementById("o3").value = "";
+    document.getElementById("o4").value = "";
+    document.getElementById("ans").value = "";
+}
+
+// ==================== BULK ADD ====================
+function bulkAdd() {
+    const p = document.getElementById("paper").value;
+    const m = document.getElementById("mockNo").value.trim() || "Mock 1";
+    const text = document.getElementById("bulkData").value.trim();
+    if (!text) { showToast("Empty data ❌"); return; }
+    if (!questionBank[p]) questionBank[p] = {};
+    if (!questionBank[p][m]) questionBank[p][m] = [];
+    let added = 0;
+    const subject = document.getElementById("subject").value;
+    text.split("\n").forEach(line => {
+        const parts = line.trim().split("|");
+        if (parts.length !== 6) return;
+        const ans = Number(parts[5]);
+        if (!Number.isInteger(ans) || ans < 0 || ans > 3) return;
+        questionBank[p][m].push({
+            subject: subject,
+            q: parts[0].trim(),
+            a: [parts[1].trim(), parts[2].trim(), parts[3].trim(), parts[4].trim()],
+            c: ans
+        });
+        added++;
+    });
+    saveDB();
+    document.getElementById("bulkData").value = "";
+    showToast(`${added} Questions Added ✅`);
+}
+
+// ==================== DELETE SINGLE QUESTION ====================
+function deleteQuestion() {
+    const p = document.getElementById("delPaper").value;
+    const m = document.getElementById("delMock").value;
+    const index = Number(document.getElementById("delIndex").value) - 1;
+    if (!questionBank[p] || !questionBank[p][m]) { showToast("Invalid Paper/Mock ❌"); return; }
+    if (index < 0 || index >= questionBank[p][m].length) { showToast("Invalid Question Number ❌"); return; }
+    questionBank[p][m].splice(index, 1);
+    saveDB();
+    document.getElementById("delIndex").value = "";
+    showToast("Question Deleted ✅");
+}
+
+// ==================== BULK DELETE (FIXED) ====================
+function bulkDeleteQuestions() {
+    const p = document.getElementById("delPaper").value;
+    const m = document.getElementById("delMock").value;
+    const rangeInput = document.getElementById("bulkDeleteRange").value.trim();
+    
+    if (!questionBank[p] || !questionBank[p][m]) {
+        showToast("Invalid Paper/Mock ❌");
+        return;
+    }
+    
+    const totalQuestions = questionBank[p][m].length;
+    if (totalQuestions === 0) {
+        showToast("No questions in this mock ❌");
+        return;
+    }
+
+    // Parse range input (e.g., "1,3,5-8")
+    let indicesToDelete = [];
+    const parts = rangeInput.split(',');
+    
+    for (let part of parts) {
+        part = part.trim();
+        if (part.includes('-')) {
+            const [start, end] = part.split('-').map(Number);
+            if (!isNaN(start) && !isNaN(end) && start >= 1 && end <= totalQuestions && start <= end) {
+                for (let i = start; i <= end; i++) {
+                    indicesToDelete.push(i - 1); // Convert to 0-based
+                }
+            } else {
+                showToast(`Invalid range: ${part} ❌`);
+                return;
+            }
+        } else {
+            const num = Number(part);
+            if (!isNaN(num) && num >= 1 && num <= totalQuestions) {
+                indicesToDelete.push(num - 1);
+            } else {
+                showToast(`Invalid number: ${part} ❌`);
+                return;
+            }
+        }
+    }
+
+    if (indicesToDelete.length === 0) {
+        showToast("No valid question numbers entered ❌");
+        return;
+    }
+
+    // Remove duplicates and sort in descending order
+    indicesToDelete = [...new Set(indicesToDelete)].sort((a, b) => b - a);
+    
+    const confirmMsg = `Delete ${indicesToDelete.length} question(s) from ${p} - ${m}?`;
+    if (!confirm(confirmMsg)) return;
+
+    // Delete from the end to avoid index shifting issues
+    for (let idx of indicesToDelete) {
+        if (idx < questionBank[p][m].length) {
+            questionBank[p][m].splice(idx, 1);
+        }
+    }
+
+    saveDB();
+    document.getElementById("bulkDeleteRange").value = "";
+    showToast(`${indicesToDelete.length} Question(s) Deleted ✅`);
+}
+
+// ==================== CLEAR FULL MOCK ====================
+function clearMockTest() {
+    const p = document.getElementById("clearPaper").value;
+    const m = document.getElementById("clearMock").value;
+    if (!questionBank[p] || !questionBank[p][m]) { showToast("Mock not found ❌"); return; }
+    if (!confirm(`Are you sure you want to DELETE ALL questions of ${p} - ${m}?`)) return;
+    questionBank[p][m] = [];
+    saveDB();
+    showToast("Mock Cleared Successfully ✅");
+}
+
+
+// ==================== USER AUTH ====================
+async function signupUser() {
+
+const name = document.getElementById("signupName").value.trim();
+const mobile = document.getElementById("signupMobile").value.trim();
+const pass = document.getElementById("signupPassword").value;
+const cpass = document.getElementById("signupConfirm").value;
+
+if(!name || !mobile || !pass || !cpass){
+alert("Fill all fields");
+return;
+}
+
+if(pass!==cpass){
+alert("Passwords do not match");
+return;
+}
+
+const email = mobile + "@defencemock.com";
+
+try{
+
+const userCredential =
+await createUserWithEmailAndPassword(auth,email,pass);
+
+await set(
+ref(db,"users/"+userCredential.user.uid),
+{
+name: name,
+mobile: mobile,
+password: pass
+});
+
+alert("Account Created Successfully");
+
+showLogin();
+
+}catch(e){
+
+alert(e.message);
+
+}
+
+}
+async function loginUser() {
+
+const mobile = document.getElementById("loginMobile").value.trim();
+const pass = document.getElementById("loginPassword").value;
+
+if(!mobile || !pass){
+alert("Fill all fields");
+return;
+}
+
+const email = mobile + "@defencemock.com";
+
+try{
+
+const userCredential =
+await signInWithEmailAndPassword(auth,email,pass);
+
+localStorage.setItem("loggedIn","true");
+
+showPage("homePage");
+const snapshot = await get(ref(db,"users/" + userCredential.user.uid));
+
+if(snapshot.exists()){
+
+const user = snapshot.val();
+
+
+document.getElementById("userNameText").innerText = user.name;
+const adminCard = document.getElementById("adminCard");
+
+if (adminCard) {
+    adminCard.style.display =
+        (user.mobile === ADMIN_MOBILE) ? "block" : "none";
+}
+
+localStorage.setItem("currentUser", JSON.stringify(user));
+localStorage.setItem(
+"coursePurchased",
+user.coursePurchased ? "true" : ""
+);
+}
+
+}catch(e){
+
+alert("Wrong Mobile or Password");
+
+}
+
+}
+
+function logoutUser() {
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("currentUser");
+    document.getElementById("loginPassword").value = "";
+    showPage("loginPage");
+}
+function openPayment(){
+
+showPage("categoryPage");
+
+document.getElementById("categoryTitle").innerText = "Buy Test Series";
+
+document.getElementById("categoryList").innerHTML = `
+
+<div style="
+max-width:450px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:20px;
+">
+
+<div class="card">
+
+<h2>🪖 Single Batch</h2>
+
+<p style="margin:8px 0;">
+<span style="text-decoration:line-through;color:#888;">₹69</span>
+<span style="color:#1565c0;font-size:30px;font-weight:bold;"> ₹49</span>
+</p>
+
+<p>
+✔ Any 1 Batch<br>
+✔ All 20 Mock Tests<br>
+✔ Lifetime Access
+</p>
+
+<img src="paymentQR.png"
+style="
+width:200px;
+height:200px;
+border-radius:15px;
+margin:15px auto;
+display:block;
+">
+
+<button class="primary"
+onclick="sendPaymentWhatsApp('Single Batch - ₹49')">
+Buy Now
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>🔥 Combo Offer</h2>
+<div style="
+display:inline-block;
+background:#ff1744;
+color:#fff;
+padding:6px 14px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+margin:10px 0;
+animation:pulse 1.5s infinite;
+">
+🔥 LIMITED TIME OFFER
+</div>
+
+<div style="
+display:inline-block;
+background:red;
+color:#fff;
+padding:5px 12px;
+border-radius:20px;
+margin-bottom:10px;
+font-size:13px;
+font-weight:bold;
+">
+BEST VALUE
+</div>
+
+<p style="margin:8px 0;">
+<span style="text-decoration:line-through;color:#888;">₹147</span>
+<span style="color:#2e7d32;font-size:30px;font-weight:bold;"> ₹99</span>
+</p>
+
+<p>
+✔ Army + Air Force + Navy<br>
+✔ All Mock Tests<br>
+✔ Lifetime Access
+</p>
+
+<img src="paymentQR.png"
+style="
+width:200px;
+height:200px;
+border-radius:15px;
+margin:15px auto;
+display:block;
+">
+
+<button class="primary"
+style="background:#2e7d32;"
+onclick="sendPaymentWhatsApp('3 Batch Combo - ₹99')">
+Buy Combo
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+function sendPaymentWhatsApp(plan){
+
+let user = JSON.parse(localStorage.getItem("currentUser"));
+
+let name = user ? user.name : "";
+let mobile = user ? user.mobile : "";
+
+let msg =
+`Payment Completed
+
+Plan : ${plan}
+
+Name : ${name}
+Mobile : ${mobile}
+
+Screenshot Attached. Please activate my course.`;
+
+window.open(
+`https://wa.me/918000471461?text=${encodeURIComponent(msg)}`,
+"_blank"
+);
+
+}
+function paymentDone(){
+
+let user = JSON.parse(localStorage.getItem("currentUser"));
+
+
+if(user){
+
+localStorage.setItem(
+"coursePurchased",
+"true"
+);
+
+
+alert("Payment Successful ✅");
+
+
+goHome();
+
+}
+
+}
+function toggleMenu() {
+    let menu = document.getElementById("menuBox");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+}
+
+document.addEventListener("click", function(e) {
+    let menu = document.getElementById("menuBox");
+    let icon = e.target.closest("div[onclick='toggleMenu()']");
+    if (!icon && menu) menu.style.display = "none";
+});
+
+function showLogin() {
+    document.getElementById("loginBox").style.display = "block";
+    document.getElementById("signupBox").style.display = "none";
+    document.getElementById("loginTab").className = "primary";
+    document.getElementById("signupTab").className = "back";
+}
+
+function showSignup() {
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("signupBox").style.display = "block";
+    document.getElementById("signupTab").className = "primary";
+    document.getElementById("loginTab").className = "back";
+}
+
+// ==================== INITIALIZE ====================
+async function loadTotalUsers() {
+
+    try {
+
+        const snapshot = await get(ref(db, "users"));
+
+        if (snapshot.exists()) {
+
+            const users = snapshot.val();
+
+            document.getElementById("totalUsers").innerText =
+                Object.keys(users).length;
+
+        } else {
+
+            document.getElementById("totalUsers").innerText = "0";
+
+        }
+
+    } catch (e) {
+
+        document.getElementById("totalUsers").innerText = "0";
+
+    }
+
+}
+async function loadUsersList() {
+
+    const list = document.getElementById("usersList");
+    list.innerHTML = "Loading...";
+
+    try {
+
+        const snapshot = await get(ref(db, "users"));
+
+        if (!snapshot.exists()) {
+            list.innerHTML = "<p>No users found.</p>";
+            return;
+        }
+
+        const users = snapshot.val();
+
+        let html = "";
+
+        Object.keys(users).forEach(uid => {
+
+            const u = users[uid];
+
+            html += `
+<div style="
+    border:1px solid #ddd;
+    padding:10px;
+    margin:10px 0;
+    border-radius:10px;
+    background:#fff;
+    color:#000;
+">
+                <b>👤 Name:</b> ${u.name}<br>
+                <b>📱 Mobile:</b> ${u.mobile}<br>
+                <b>🔑 Password:</b> ${u.password}
+            </div>`;
+        });
+
+        list.innerHTML = html;
+
+    } catch (e) {
+
+        list.innerHTML = "Error loading users.";
+
+    }
+
+}
+window.onload = async function() {
+    await loadDB();
+    
+    // Splash Screen 1 second
+await new Promise(resolve => setTimeout(resolve, 1000));
+
+document.getElementById("splashScreen").style.display = "none";
+    loadSubjectList();
+    loadDeleteMocks();
+    loadClearMocks();
+    try {
+        if (localStorage.getItem("loggedIn") === "true") {
+            const user = JSON.parse(localStorage.getItem("currentUser"));
+            if (user) {
+                document.getElementById("userNameText").innerText = user.name;
+                const adminCard = document.getElementById("adminCard");
+                if (adminCard) {
+                    adminCard.style.display = (user.mobile === ADMIN_MOBILE) ? "block" : "none";
+                }
+                const buyCard = document.getElementById("buyCourseCard");
+
+if (buyCard) {
+    buyCard.style.display =
+        (user.mobile === ADMIN_MOBILE) ? "none" : "block";
+}
+                showPage("homePage");
+                return;
+            }
+        }
+    } catch (e) {
+        localStorage.removeItem("loggedIn");
+        localStorage.removeItem("currentUser");
+    }
+    showLogin();
+};
+</script>
+
+</div>
+</body>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+window.get = get;
+import { get, set } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCAjHh4EiS0mugppe6U9KU8ZDw8f3lpko4",
+  authDomain: "defence-mock-test.firebaseapp.com",
+  databaseURL: "https://defence-mock-test-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "defence-mock-test",
+  storageBucket: "defence-mock-test.firebasestorage.app",
+  messagingSenderId: "902600729022",
+  appId: "1:902600729022:web:8133377ddabca36137d9ef"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
+const auth = getAuth(app);
+window.db = db;
+window.auth = auth;
+window.get = get;
+window.set = set;
+window.ref = ref;
+
+window.db = db;
+window.auth = auth;
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+import { ref } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js";
+window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+window.ref = ref;
+window.get = get;
+window.set = set;
+</script>
+</html>
